@@ -1,0 +1,4 @@
+TODOS
+
+1. Integrate with Stripe
+2. In the struct, lets say, Customer need to have a field like "DBTable" to indicate the equivalent in the local.
