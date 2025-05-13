@@ -1,20 +1,16 @@
 package stripeRepository
 
 import (
-	"finances-api/db"
-
 	"github.com/stripe/stripe-go/v82"
 	"github.com/stripe/stripe-go/v82/checkout/session"
 )
 
 type stripeCheckoutRepository struct {
-	db        db.Database
 	stripeKey string
 }
 
-func NewStripeCheckoutRepository(db db.Database, key string) StripeCheckout {
+func NewStripeCheckoutRepository(key string) StripeCheckout {
 	return &stripeCheckoutRepository{
-		db:        db,
 		stripeKey: key,
 	}
 }

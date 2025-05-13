@@ -1,20 +1,16 @@
 package stripeRepository
 
 import (
-	"finances-api/db"
-
 	"github.com/stripe/stripe-go/v82"
 	"github.com/stripe/stripe-go/v82/price"
 )
 
 type stripePriceRepository struct {
-	db        db.Database
 	stripeKey string
 }
 
-func NewStripePriceRepository(db db.Database, key string) StripePrice {
+func NewStripePriceRepository(key string) StripePrice {
 	return &stripePriceRepository{
-		db:        db,
 		stripeKey: key,
 	}
 }
