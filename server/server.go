@@ -1,7 +1,7 @@
 package server
 
 import (
-	"finances-api/utils"
+	logs "finances-api/utils/logs"
 
 	"finances-api/db"
 
@@ -14,7 +14,7 @@ type Server struct {
 }
 
 func NewServer(db db.Database) *Server {
-	utils.InitLogging()
+	logs.InitLogging()
 
 	return &Server{
 		app: gin.Default(),
