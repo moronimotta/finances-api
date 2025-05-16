@@ -1,6 +1,8 @@
 package stripeRepository
 
-type StripeRepository interface {
+import "finances-api/repositories"
+
+type StripeRepository struct {
 	StripeProducts
 	StripePrice
 }
@@ -15,4 +17,11 @@ type StripePrice interface {
 
 type StripeCheckout interface {
 	CreateCheckoutSession(priceID, successURL, cancelURL string) (string, error)
+}
+
+func NewStripeRepository(key string) repositories.FinancialRepository {
+	return StripeRepository{
+		StripeProducts: NewStripeProductsRepository(key),
+		StripePrice:    NewStripePriceRepository(key),
+	}
 }
