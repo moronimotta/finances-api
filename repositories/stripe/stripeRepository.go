@@ -1,6 +1,9 @@
 package stripeRepository
 
-import "finances-api/repositories"
+import (
+	"finances-api/repositories"
+	"os"
+)
 
 type StripeRepository struct {
 	StripeProducts
@@ -19,7 +22,8 @@ type StripeCheckout interface {
 	CreateCheckoutSession(priceID, successURL, cancelURL string) (string, error)
 }
 
-func NewStripeRepository(key string) repositories.FinancialRepository {
+func NewStripeRepository() repositories.FinancialRepository {
+	key := os.Getenv("STRIPE_KEY")
 	return StripeRepository{
 		StripeProducts: NewStripeProductsRepository(key),
 		StripePrice:    NewStripePriceRepository(key),

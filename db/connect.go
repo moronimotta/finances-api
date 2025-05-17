@@ -3,24 +3,22 @@ package db
 
 import (
 	"log"
+	"os"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 func Connect() (Database, error) {
-	config := Config{}
-	err := config.LoadConfig()
-	if err != nil {
-		log.Fatalf("Error loading config: %v", err)
-	}
 
-	db, err := gorm.Open(postgres.Open(config.DBURL), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(os.Getenv("DB_URL")), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Error connecting to database: %v", err)
 	}
 
-	// automigrate
+	// if err := db.AutoMigrate(&user.User{}); err != nil {
+	// 	log.Fatalf("Error migrating database: %v", err)
+	// }
 
 	return &GormDatabase{DB: db}, nil
 }

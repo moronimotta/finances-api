@@ -1,7 +1,6 @@
 package usecases
 
 import (
-	"errors"
 	"finances-api/repositories"
 )
 
@@ -15,12 +14,18 @@ func NewFinancialUsecase(repository repositories.FinancialRepository) *Financial
 	}
 }
 
-func (f *FinancialUsecase) EventBus(event string) error {
-	switch event {
-	case "customer.created":
-		// Handle customer creation
-	default:
-		return errors.New("event not found")
+func (f *FinancialUsecase) CreateProduct(name, description string) (string, error) {
+	productID, err := f.Repository.CreateProduct(name, description)
+	if err != nil {
+		return "", err
 	}
-	return nil
+	return productID, nil
+}
+
+func (f *FinancialUsecase) CreatePrice(productID string, unitAmount int64, currency string) (string, error) {
+	priceID, err := f.Repository.CreatePrice(productID, unitAmount, currency)
+	if err != nil {
+		return "", err
+	}
+	return priceID, nil
 }

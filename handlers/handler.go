@@ -2,12 +2,11 @@ package handlers
 
 import (
 	"errors"
-	stripeRepository "finances-api/repositories/stripe"
 	usescases "finances-api/usecases"
 )
 
 type HttpHandler struct {
-	Repo usescases.FinancialUsecase
+	usescases.FinancialUsecase
 }
 
 func NewHttpHandler(gatewayName, gatewayAccessKey string) (*HttpHandler, error) {
@@ -15,18 +14,20 @@ func NewHttpHandler(gatewayName, gatewayAccessKey string) (*HttpHandler, error) 
 
 	switch gatewayName {
 	case "stripe":
-		stripeRepo := stripeRepository.NewStripeRepository(gatewayAccessKey)
-		usecaseInput = *usescases.NewFinancialUsecase(stripeRepo)
+		usecaseInput = *usescases.NewStripeUsecase()
 	default:
 		return nil, errors.New("unsupported payment gateway")
 	}
 	return &HttpHandler{
-		Repo: usecaseInput,
+		usecaseInput,
 	}, nil
 }
 
-// func NewUserRabbitMQHandler(usecaseInput usescases.UserEventUsecase) *UserRabbitMQHandler {
-// 	return &UserRabbitMQHandler{
-// 		Repo: usecaseInput,
-// 	}
-// }
+func (h *HttpHandler) EventBus(payload []byte, signature string) error {
+	switch h.Repository.(type) {
+	case *usescases.StripeUsecase:
+		return h.EventBus(payload, signature)
+	default:
+		return errors.New("unsupported payment gateway")
+	}
+}

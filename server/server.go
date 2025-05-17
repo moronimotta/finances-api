@@ -1,7 +1,11 @@
 package server
 
 import (
+	"finances-api/handlers"
 	logs "finances-api/utils/logs"
+	"io/ioutil"
+	"net/http"
+	"os"
 
 	"finances-api/db"
 
@@ -33,5 +37,24 @@ func (s *Server) Start() {
 }
 
 func (s *Server) initializePaymentHttpHandler() {
-	// Initialize payment handler here
+
+	stripeHandler, err := handlers.NewHttpHandler("stripe", os.Getenv("STRIPE_SECRET_KEY"))
+	if err != nil {
+		return
+	}
+
+	s.app.POST("/webhook/stripe", func(ctx *gin.Context) {
+		const MaxBodyBytes = int64(65536)
+
+		ctx.Request.Body = http.MaxBytesReader(ctx.Writer, ctx.Request.Body, MaxBodyBytes)
+		payload, err := ioutil.ReadAll(ctx.Request.Body)
+
+		stripeHandler.EventBus(payload, ctx.Request.Header.Get("Stripe-Signature"))
+
+		if err != nil {
+			ctx.JSON(http.StatusServiceUnavailable, gin.H{"error": "Error reading request body"})
+			return
+		}
+	})
+
 }
