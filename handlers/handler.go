@@ -9,7 +9,7 @@ type HttpHandler struct {
 	usescases.FinancialUsecase
 }
 
-func NewHttpHandler(gatewayName, gatewayAccessKey string) (*HttpHandler, error) {
+func NewHttpHandler(gatewayName string) (*HttpHandler, error) {
 	var usecaseInput usescases.FinancialUsecase
 
 	switch gatewayName {
