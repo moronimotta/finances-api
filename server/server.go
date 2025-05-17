@@ -5,7 +5,6 @@ import (
 	logs "finances-api/utils/logs"
 	"io/ioutil"
 	"net/http"
-	"os"
 
 	"finances-api/db"
 
@@ -38,7 +37,7 @@ func (s *Server) Start() {
 
 func (s *Server) initializePaymentHttpHandler() {
 
-	stripeHandler, err := handlers.NewHttpHandler("stripe", os.Getenv("STRIPE_SECRET_KEY"))
+	stripeHandler, err := handlers.NewHttpHandler("stripe")
 	if err != nil {
 		return
 	}
