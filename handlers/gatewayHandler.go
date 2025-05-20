@@ -2,15 +2,15 @@ package handlers
 
 import (
 	"errors"
-	usescases "finances-api/usecases"
+	usescases "finances-api/usecases/gateway"
 )
 
-type HttpHandler struct {
-	usescases.FinancialUsecase
+type GatewayHttpHandler struct {
+	usescases.GatewayUsecase
 }
 
-func NewHttpHandler(gatewayName string) (*HttpHandler, error) {
-	var usecaseInput usescases.FinancialUsecase
+func NewGatewayHttpHandler(gatewayName string) (*GatewayHttpHandler, error) {
+	var usecaseInput usescases.GatewayUsecase
 
 	switch gatewayName {
 	case "stripe":
@@ -18,12 +18,12 @@ func NewHttpHandler(gatewayName string) (*HttpHandler, error) {
 	default:
 		return nil, errors.New("unsupported payment gateway")
 	}
-	return &HttpHandler{
+	return &GatewayHttpHandler{
 		usecaseInput,
 	}, nil
 }
 
-func (h *HttpHandler) EventBus(payload []byte, signature string) error {
+func (h *GatewayHttpHandler) EventBus(payload []byte, signature string) error {
 	switch h.Repository.(type) {
 	case *usescases.StripeUsecase:
 		return h.EventBus(payload, signature)

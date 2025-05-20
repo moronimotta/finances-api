@@ -37,10 +37,15 @@ func (s *Server) Start() {
 
 func (s *Server) initializePaymentHttpHandler() {
 
-	stripeHandler, err := handlers.NewHttpHandler("stripe")
+	stripeHandler, err := handlers.NewGatewayHttpHandler("stripe")
 	if err != nil {
 		return
 	}
+
+	// pgHandler, err := handlers.NewDbHttpHandler("postgres", s.db)
+	// if err != nil {
+	// 	return
+	// }
 
 	s.app.POST("/webhook/stripe", func(ctx *gin.Context) {
 		const MaxBodyBytes = int64(65536)

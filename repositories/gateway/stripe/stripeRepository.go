@@ -19,10 +19,10 @@ type StripePrice interface {
 }
 
 type StripeCheckout interface {
-	CreateCheckoutSession(priceID, successURL, cancelURL string) (string, error)
+	CreateCheckoutSession(priceID, cutomerID, successURL, cancelURL string) (string, error)
 }
 
-func NewStripeRepository() repositories.FinancialRepository {
+func NewStripeRepository() repositories.GatewayRepository {
 	key := os.Getenv("STRIPE_KEY")
 	return StripeRepository{
 		StripeProducts: NewStripeProductsRepository(key),

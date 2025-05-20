@@ -13,7 +13,7 @@ type Products struct {
 	DeletedAt   string `json:"deleted_at"`
 }
 
-type User_Products struct {
+type UserProducts struct {
 	ID        string `json:"id"`
 	UserID    string `json:"user_id"`
 	ProductID string `json:"product_id"`
@@ -40,6 +40,7 @@ type Invoices struct {
 type Transactions struct {
 	ID          string `json:"id"`
 	AmountPayed int64  `json:"amount_paid"`
+	AmountTotal int64  `json:"amount_total"`
 	InvoiceID   string `json:"invoice_id"`
 	CreatedAt   string `json:"created_at"`
 	UpdatedAt   string `json:"updated_at"`

@@ -15,7 +15,7 @@ func NewStripeCheckoutRepository(key string) StripeCheckout {
 	}
 }
 
-func (r *stripeCheckoutRepository) CreateCheckoutSession(priceID, successURL, cancelURL string) (string, error) {
+func (r *stripeCheckoutRepository) CreateCheckoutSession(priceID, customerID, successURL, cancelURL string) (string, error) {
 	stripe.Key = r.stripeKey
 
 	params := &stripe.CheckoutSessionParams{
@@ -26,6 +26,7 @@ func (r *stripeCheckoutRepository) CreateCheckoutSession(priceID, successURL, ca
 				Quantity: stripe.Int64(1),
 			},
 		},
+		Customer:   stripe.String(customerID),
 		Mode:       stripe.String(string(stripe.CheckoutSessionModePayment)),
 		SuccessURL: stripe.String(successURL),
 		CancelURL:  stripe.String(cancelURL),

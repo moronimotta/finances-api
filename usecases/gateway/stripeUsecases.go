@@ -2,7 +2,7 @@ package usecases
 
 import (
 	"encoding/json"
-	stripeRepository "finances-api/repositories/stripe"
+	stripeRepository "finances-api/repositories/gateway/stripe"
 	"log"
 	"os"
 
@@ -11,13 +11,13 @@ import (
 )
 
 type StripeUsecase struct {
-	FinancialUsecase
+	GatewayUsecase
 }
 
-func NewStripeUsecase() *FinancialUsecase {
+func NewStripeUsecase() *GatewayUsecase {
 	stripeRepo := stripeRepository.NewStripeRepository()
-	return &FinancialUsecase{
-		Repository: NewFinancialUsecase(stripeRepo),
+	return &GatewayUsecase{
+		Repository: NewGatewayUsecase(stripeRepo),
 	}
 }
 
