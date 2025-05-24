@@ -5,11 +5,12 @@ import "finances-api/entities"
 type GatewayRepository interface {
 	CreateProduct(name, description string) (string, error)
 	CreatePrice(productID string, unitAmount int64, currency string) (string, error)
+	CreateCheckoutSession(productID, priceID, successURL, cancelURL string) (string, error)
 }
 
 type FinancialRepository interface {
 	// Products
-	CreateProduct(name, description string) error
+	CreateProduct(name, description, externalID, gatewayName string, price int64) error
 	GetProductByID(id string) (*entities.Products, error)
 	GetAllProducts() ([]entities.Products, error)
 	GetProductByExternalID(externalID string) (*entities.Products, error)

@@ -43,7 +43,8 @@ func (s *StripeUsecase) EventBus(payload []byte, signature string) error {
 		if err != nil {
 			return err
 		}
-	// Add more cases for other event types you want to handle
+	case "customer.created":
+
 	default:
 		log.Printf("Unhandled event type: %s\n", event.Type)
 	}

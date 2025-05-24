@@ -8,14 +8,8 @@ import (
 type StripeRepository struct {
 	StripeProducts
 	StripePrice
-}
-
-type StripeProducts interface {
-	CreateProduct(name, description string) (string, error)
-}
-
-type StripePrice interface {
-	CreatePrice(productID string, unitAmount int64, currency string) (string, error)
+	StripeCheckout
+	StripeCustomer
 }
 
 type StripeCheckout interface {
@@ -27,5 +21,7 @@ func NewStripeRepository() repositories.GatewayRepository {
 	return StripeRepository{
 		StripeProducts: NewStripeProductsRepository(key),
 		StripePrice:    NewStripePriceRepository(key),
+		StripeCheckout: NewStripeCheckoutRepository(key),
+		StripeCustomer: NewStripeCustomerRepository(key),
 	}
 }

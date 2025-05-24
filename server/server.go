@@ -1,6 +1,7 @@
 package server
 
 import (
+	"finances-api/entities"
 	"finances-api/handlers"
 	logs "finances-api/utils/logs"
 	"io/ioutil"
@@ -12,16 +13,21 @@ import (
 )
 
 type Server struct {
-	app *gin.Engine
-	db  db.Database
+	app       *gin.Engine
+	pgHandler *handlers.DbHttpHandler
 }
 
 func NewServer(db db.Database) *Server {
 	logs.InitLogging()
 
+	pgHandler, err := handlers.NewDbHttpHandler("postgres", db)
+	if err != nil {
+		return nil
+	}
+
 	return &Server{
-		app: gin.Default(),
-		db:  db,
+		app:       gin.Default(),
+		pgHandler: pgHandler,
 	}
 }
 func (s *Server) Start() {
@@ -37,18 +43,37 @@ func (s *Server) Start() {
 
 func (s *Server) initializePaymentHttpHandler() {
 
-	stripeHandler, err := handlers.NewGatewayHttpHandler("stripe")
-	if err != nil {
-		return
-	}
+	s.initProductsRoutes()
 
-	// pgHandler, err := handlers.NewDbHttpHandler("postgres", s.db)
-	// if err != nil {
-	// 	return
-	// }
+	s.app.POST("/checkout", func(ctx *gin.Context) {
+		checkout := entities.Checkout{}
+		if err := ctx.ShouldBindJSON(&checkout); err != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
+			return
+		}
+
+		gatewayHandler, err := handlers.NewGatewayHttpHandler(checkout.GatewayName)
+		if err != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid gateway"})
+			return
+		}
+
+		checkoutURL, err := gatewayHandler.Repository.CreateCheckoutSession(checkout.PriceID, checkout.CustomerID, checkout.SuccessURL, checkout.CancelURL)
+		if err != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error creating checkout session"})
+			return
+		}
+		ctx.JSON(http.StatusOK, gin.H{"checkout_url": checkoutURL})
+	})
 
 	s.app.POST("/webhook/stripe", func(ctx *gin.Context) {
 		const MaxBodyBytes = int64(65536)
+
+		stripeHandler, err := handlers.NewGatewayHttpHandler("stripe")
+		if err != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid gateway"})
+			return
+		}
 
 		ctx.Request.Body = http.MaxBytesReader(ctx.Writer, ctx.Request.Body, MaxBodyBytes)
 		payload, err := ioutil.ReadAll(ctx.Request.Body)

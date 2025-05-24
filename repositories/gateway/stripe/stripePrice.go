@@ -5,6 +5,10 @@ import (
 	"github.com/stripe/stripe-go/v82/price"
 )
 
+type StripePrice interface {
+	CreatePrice(productID string, unitAmount int64, currency string) (string, error)
+}
+
 type stripePriceRepository struct {
 	stripeKey string
 }

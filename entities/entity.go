@@ -7,10 +7,21 @@ type Products struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
 	Price       int64  `json:"price"`
+	Currency    string `json:"currency"`
 	ExternalID  string `json:"external_id"`
 	CreatedAt   string `json:"created_at"`
 	UpdatedAt   string `json:"updated_at"`
 	DeletedAt   string `json:"deleted_at"`
+	GatewayName string `json:"gateway_name"`
+}
+
+type Checkout struct {
+	CustomerID  string `json:"customer_id"`
+	PriceID     string `json:"price_id"`
+	SuccessURL  string `json:"success_url"`
+	CancelURL   string `json:"cancel_url"`
+	SessionID   string `json:"session_id"`
+	GatewayName string `json:"gateway_name"`
 }
 
 type UserProducts struct {

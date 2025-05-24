@@ -5,6 +5,10 @@ import (
 	"github.com/stripe/stripe-go/v82/product"
 )
 
+type StripeProducts interface {
+	CreateProduct(name, description string) (string, error)
+}
+
 type stripeProductsRepository struct {
 	stripeKey string
 }

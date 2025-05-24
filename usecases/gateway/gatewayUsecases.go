@@ -29,3 +29,11 @@ func (f *GatewayUsecase) CreatePrice(productID string, unitAmount int64, currenc
 	}
 	return priceID, nil
 }
+
+func (f *GatewayUsecase) CreateCheckoutSession(priceID, customerID, successURL, cancelURL string) (string, error) {
+	sessionID, err := f.Repository.CreateCheckoutSession(priceID, customerID, successURL, cancelURL)
+	if err != nil {
+		return "", err
+	}
+	return sessionID, nil
+}

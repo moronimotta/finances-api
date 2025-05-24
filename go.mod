@@ -6,7 +6,7 @@ require (
 	github.com/gin-contrib/cors v1.7.5
 	github.com/gin-gonic/gin v1.10.0
 	github.com/joho/godotenv v1.5.1
-	github.com/moronimotta/message-worker-module v0.0.0-20250514173756-a4410352b32d
+	github.com/moronimotta/message-worker-module v0.0.0-20250524212518-58870907c7c9
 	github.com/rabbitmq/amqp091-go v1.10.0
 	github.com/stripe/stripe-go/v82 v82.1.0
 	gorm.io/driver/postgres v1.5.11

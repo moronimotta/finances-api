@@ -6,7 +6,7 @@ import (
 )
 
 type PgProducts interface {
-	CreateProduct(name, description string) error
+	CreateProduct(name, description, externalID, gatewayName string, price int64) error
 	GetProductByID(id string) (*entities.Products, error)
 	GetAllProducts() ([]entities.Products, error)
 	GetProductByExternalID(externalID string) (*entities.Products, error)
@@ -24,7 +24,7 @@ func NewPgProductsRepository(db db.Database) PgProducts {
 	}
 }
 
-func (r *pgProductsRepository) CreateProduct(name, description string) error {
+func (r *pgProductsRepository) CreateProduct(name, description, externalID, gatewayName string, price int64) error {
 	product := &entities.Products{
 		Name:        name,
 		Description: description,
