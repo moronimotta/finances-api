@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 type Products struct {
@@ -74,37 +75,38 @@ type Gateway struct {
 	DeletedAt    string `json:"deleted_at"`
 }
 
-func (p *Products) BeforeCreate() {
-	p.ID = uuid.New().String()
-	now := time.Now().UTC().Format(time.RFC3339)
-	p.CreatedAt = now
-	p.UpdatedAt = now
-}
-
-func (u *UserProducts) BeforeCreate() {
-	u.ID = uuid.New().String()
-	now := time.Now().UTC().Format(time.RFC3339)
-	u.CreatedAt = now
-	u.UpdatedAt = now
-}
-
-func (i *Invoices) BeforeCreate() {
-	i.ID = uuid.New().String()
-	now := time.Now().UTC().Format(time.RFC3339)
-	i.CreatedAt = now
-	i.UpdatedAt = now
-}
-
-func (t *Transactions) BeforeCreate() {
-	t.ID = uuid.New().String()
-	now := time.Now().UTC().Format(time.RFC3339)
-	t.CreatedAt = now
-	t.UpdatedAt = now
-}
-
-func (g *Gateway) BeforeCreate() {
+func (g *Gateway) BeforeCreate(tx *gorm.DB) error {
 	g.ID = uuid.New().String()
-	now := time.Now().UTC().Format(time.RFC3339)
-	g.CreatedAt = now
-	g.UpdatedAt = now
+	g.CreatedAt = time.Now().Format("2006-01-02 15:04:05")
+	g.UpdatedAt = time.Now().Format("2006-01-02 15:04:05")
+	return nil
+}
+
+// Repeat for Products, UserProducts, Invoices, Transactions:
+func (p *Products) BeforeCreate(tx *gorm.DB) error {
+	p.ID = uuid.New().String()
+	p.CreatedAt = time.Now().Format("2006-01-02 15:04:05")
+	p.UpdatedAt = time.Now().Format("2006-01-02 15:04:05")
+	return nil
+}
+
+func (u *UserProducts) BeforeCreate(tx *gorm.DB) error {
+	u.ID = uuid.New().String()
+	u.CreatedAt = time.Now().Format("2006-01-02 15:04:05")
+	u.UpdatedAt = time.Now().Format("2006-01-02 15:04:05")
+	return nil
+}
+
+func (i *Invoices) BeforeCreate(tx *gorm.DB) error {
+	i.ID = uuid.New().String()
+	i.CreatedAt = time.Now().Format("2006-01-02 15:04:05")
+	i.UpdatedAt = time.Now().Format("2006-01-02 15:04:05")
+	return nil
+}
+
+func (t *Transactions) BeforeCreate(tx *gorm.DB) error {
+	t.ID = uuid.New().String()
+	t.CreatedAt = time.Now().Format("2006-01-02 15:04:05")
+	t.UpdatedAt = time.Now().Format("2006-01-02 15:04:05")
+	return nil
 }

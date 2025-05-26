@@ -17,7 +17,7 @@ func (s *Server) initGatewayRoutes() {
 			return
 		}
 
-		if err := s.pgHandler.Repository.CreateGateway(gateway.Name); err != nil {
+		if err := s.pgHandler.Repository.CreateGateway(gateway); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error creating gateway"})
 			return
 		}

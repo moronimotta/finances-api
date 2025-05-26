@@ -6,7 +6,7 @@ import (
 )
 
 type PgGateway interface {
-	CreateGateway(name string) error
+	CreateGateway(gateway entities.Gateway) error
 	GetGatewayByID(id string) (*entities.Gateway, error)
 	GetAllGateways() ([]entities.Gateway, error)
 	UpdateGateway(gateway *entities.Gateway) error
@@ -22,12 +22,9 @@ func NewPgGatewayRepository(db db.Database) PgGateway {
 		db: db,
 	}
 }
-func (r *pgGatewayRepository) CreateGateway(name string) error {
-	gateway := &entities.Gateway{
-		Name: name,
-	}
+func (r *pgGatewayRepository) CreateGateway(gateway entities.Gateway) error {
 
-	if err := r.db.GetDB().Create(gateway).Error; err != nil {
+	if err := r.db.GetDB().Create(&gateway).Error; err != nil {
 		return err
 	}
 	return nil

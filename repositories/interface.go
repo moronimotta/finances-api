@@ -26,7 +26,7 @@ type FinancialRepository interface {
 	GetUserProductsByUserID(userID string) ([]entities.UserProducts, error)
 
 	// Gateway
-	CreateGateway(name string) error
+	CreateGateway(gateway entities.Gateway) error
 	GetGatewayByID(id string) (*entities.Gateway, error)
 	GetAllGateways() ([]entities.Gateway, error)
 	UpdateGateway(gateway *entities.Gateway) error
