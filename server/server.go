@@ -47,6 +47,7 @@ func (s *Server) initializePaymentHttpHandler() {
 	s.initUserProductsRoutes()
 	s.initTransactionsRoutes()
 	s.initGatewayRoutes()
+	s.initInvoicesRoutes()
 
 	s.app.POST("/checkout", func(ctx *gin.Context) {
 		checkout := entities.Checkout{}

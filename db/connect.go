@@ -16,7 +16,11 @@ func Connect() (Database, error) {
 		log.Fatalf("Error connecting to database: %v", err)
 	}
 
-	// if err := db.AutoMigrate(&user.User{}); err != nil {
+	// if err := db.AutoMigrate(&entities.Gateway{},
+	// 	&entities.Invoices{},
+	// 	&entities.Products{},
+	// 	&entities.UserProducts{},
+	// 	&entities.Transactions{}); err != nil {
 	// 	log.Fatalf("Error migrating database: %v", err)
 	// }
 

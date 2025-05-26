@@ -1,6 +1,11 @@
 package entities
 
-import "finances-api/utils/meta"
+import (
+	"finances-api/utils/meta"
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type Products struct {
 	ID          string `json:"id"`
@@ -67,4 +72,39 @@ type Gateway struct {
 	CreatedAt    string `json:"created_at"`
 	UpdatedAt    string `json:"updated_at"`
 	DeletedAt    string `json:"deleted_at"`
+}
+
+func (p *Products) BeforeCreate() {
+	p.ID = uuid.New().String()
+	now := time.Now().UTC().Format(time.RFC3339)
+	p.CreatedAt = now
+	p.UpdatedAt = now
+}
+
+func (u *UserProducts) BeforeCreate() {
+	u.ID = uuid.New().String()
+	now := time.Now().UTC().Format(time.RFC3339)
+	u.CreatedAt = now
+	u.UpdatedAt = now
+}
+
+func (i *Invoices) BeforeCreate() {
+	i.ID = uuid.New().String()
+	now := time.Now().UTC().Format(time.RFC3339)
+	i.CreatedAt = now
+	i.UpdatedAt = now
+}
+
+func (t *Transactions) BeforeCreate() {
+	t.ID = uuid.New().String()
+	now := time.Now().UTC().Format(time.RFC3339)
+	t.CreatedAt = now
+	t.UpdatedAt = now
+}
+
+func (g *Gateway) BeforeCreate() {
+	g.ID = uuid.New().String()
+	now := time.Now().UTC().Format(time.RFC3339)
+	g.CreatedAt = now
+	g.UpdatedAt = now
 }
