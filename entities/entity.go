@@ -9,16 +9,18 @@ import (
 )
 
 type Products struct {
-	ID          string `json:"id"`
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Price       int64  `json:"price"`
-	Currency    string `json:"currency"`
-	ExternalID  string `json:"external_id"`
-	CreatedAt   string `json:"created_at"`
-	UpdatedAt   string `json:"updated_at"`
-	DeletedAt   string `json:"deleted_at"`
-	GatewayName string `json:"gateway_name"`
+	ID                       string `json:"id"`
+	Name                     string `json:"name"`
+	Description              string `json:"description"`
+	Price                    int64  `json:"price"`
+	Currency                 string `json:"currency"`
+	GatewayProductExternalID string `json:"external_id"`
+	GatewayPriceExternalID   string `json:"gateway_price_external_id"`
+	GatewayID                string `json:"gateway_id"`
+	CreatedAt                string `json:"created_at"`
+	UpdatedAt                string `json:"updated_at"`
+	DeletedAt                string `json:"deleted_at"`
+	GatewayName              string `json:"gateway_name"`
 }
 
 type Checkout struct {
@@ -86,6 +88,11 @@ func (g *Gateway) BeforeCreate(tx *gorm.DB) error {
 func (p *Products) BeforeCreate(tx *gorm.DB) error {
 	p.ID = uuid.New().String()
 	p.CreatedAt = time.Now().Format("2006-01-02 15:04:05")
+	p.UpdatedAt = time.Now().Format("2006-01-02 15:04:05")
+	return nil
+}
+
+func (p *Products) BeforeUpdate(tx *gorm.DB) error {
 	p.UpdatedAt = time.Now().Format("2006-01-02 15:04:05")
 	return nil
 }

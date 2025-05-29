@@ -1,16 +1,21 @@
 package repositories
 
-import "finances-api/entities"
+import (
+	"finances-api/entities"
+	"finances-api/utils/meta"
+)
 
 type GatewayRepository interface {
-	CreateProduct(name, description string) (string, error)
+	CreateProduct(name, description string, localProduct entities.Products) (string, error)
 	CreatePrice(productID string, unitAmount int64, currency string) (string, error)
+	UpdateProduct(productID, name, description string, meta meta.Meta) error
 	CreateCheckoutSession(productID, priceID, successURL, cancelURL string) (string, error)
+	DeactivateProduct(productID string) error
 }
 
 type FinancialRepository interface {
 	// Products
-	CreateProduct(name, description, externalID, gatewayName string, price int64) error
+	CreateProduct(product *entities.Products) error
 	GetProductByID(id string) (*entities.Products, error)
 	GetAllProducts() ([]entities.Products, error)
 	GetProductByExternalID(externalID string) (*entities.Products, error)

@@ -1,7 +1,9 @@
 package usecases
 
 import (
+	"finances-api/entities"
 	"finances-api/repositories"
+	"finances-api/utils/meta"
 )
 
 type GatewayUsecase struct {
@@ -14,8 +16,8 @@ func NewGatewayUsecase(repository repositories.GatewayRepository) *GatewayUsecas
 	}
 }
 
-func (f *GatewayUsecase) CreateProduct(name, description string) (string, error) {
-	productID, err := f.Repository.CreateProduct(name, description)
+func (f *GatewayUsecase) CreateProduct(name, description string, localProduct entities.Products) (string, error) {
+	productID, err := f.Repository.CreateProduct(name, description, localProduct)
 	if err != nil {
 		return "", err
 	}
@@ -28,6 +30,22 @@ func (f *GatewayUsecase) CreatePrice(productID string, unitAmount int64, currenc
 		return "", err
 	}
 	return priceID, nil
+}
+
+func (f *GatewayUsecase) DeactivateProduct(productID string) error {
+	err := f.Repository.DeactivateProduct(productID)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (f *GatewayUsecase) UpdateProduct(productID, name, description string, meta meta.Meta) error {
+	err := f.Repository.UpdateProduct(productID, name, description, meta)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func (f *GatewayUsecase) CreateCheckoutSession(priceID, customerID, successURL, cancelURL string) (string, error) {

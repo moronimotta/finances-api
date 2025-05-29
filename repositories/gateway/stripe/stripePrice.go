@@ -31,5 +31,20 @@ func (r *stripePriceRepository) CreatePrice(productID string, unitAmount int64, 
 	if starter_price == nil {
 		return "", nil
 	}
+
 	return starter_price.ID, nil
+}
+
+func (r *stripePriceRepository) UpdatePrice(priceID string, unitAmount int64, currency string) error {
+	stripe.Key = r.stripeKey
+
+	params := &stripe.PriceParams{
+		UnitAmount: stripe.Int64(unitAmount),
+		Currency:   stripe.String(currency),
+	}
+	_, err := price.Update(priceID, params)
+	if err != nil {
+		return err
+	}
+	return nil
 }

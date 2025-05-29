@@ -2,6 +2,7 @@
 package db
 
 import (
+	"finances-api/entities"
 	"log"
 	"os"
 
@@ -16,13 +17,13 @@ func Connect() (Database, error) {
 		log.Fatalf("Error connecting to database: %v", err)
 	}
 
-	// if err := db.AutoMigrate(&entities.Gateway{},
-	// 	&entities.Invoices{},
-	// 	&entities.Products{},
-	// 	&entities.UserProducts{},
-	// 	&entities.Transactions{}); err != nil {
-	// 	log.Fatalf("Error migrating database: %v", err)
-	// }
+	if err := db.AutoMigrate(&entities.Gateway{},
+		&entities.Invoices{},
+		&entities.Products{},
+		&entities.UserProducts{},
+		&entities.Transactions{}); err != nil {
+		log.Fatalf("Error migrating database: %v", err)
+	}
 
 	return &GormDatabase{DB: db}, nil
 }

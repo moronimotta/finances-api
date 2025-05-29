@@ -3,6 +3,7 @@ package usecases
 import (
 	"encoding/json"
 	stripeRepository "finances-api/repositories/gateway/stripe"
+	"fmt"
 	"log"
 	"os"
 
@@ -44,6 +45,13 @@ func (s *StripeUsecase) EventBus(payload []byte, signature string) error {
 			return err
 		}
 	case "customer.created":
+		fmt.Printf("Customer created: %s\n", event.Data.Object)
+
+	case "product.updated":
+		// Flow:
+		// Product created with metadata containing the local product ID and stripe_current_price_id.
+		// If I want to change a price, I'll do it on the dashboard, triggering product.updated.
+		// Then, I can compare both. If they differ, I update locally and set the new price ID in the metadata.
 
 	default:
 		log.Printf("Unhandled event type: %s\n", event.Type)

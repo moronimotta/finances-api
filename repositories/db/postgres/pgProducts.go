@@ -6,7 +6,7 @@ import (
 )
 
 type PgProducts interface {
-	CreateProduct(name, description, externalID, gatewayName string, price int64) error
+	CreateProduct(product *entities.Products) error
 	GetProductByID(id string) (*entities.Products, error)
 	GetAllProducts() ([]entities.Products, error)
 	GetProductByExternalID(externalID string) (*entities.Products, error)
@@ -24,13 +24,9 @@ func NewPgProductsRepository(db db.Database) PgProducts {
 	}
 }
 
-func (r *pgProductsRepository) CreateProduct(name, description, externalID, gatewayName string, price int64) error {
-	product := &entities.Products{
-		Name:        name,
-		Description: description,
-	}
+func (r *pgProductsRepository) CreateProduct(product *entities.Products) error {
 
-	if err := r.db.GetDB().Create(product).Error; err != nil {
+	if err := r.db.GetDB().Create(&product).Error; err != nil {
 		return err
 	}
 	return nil
@@ -64,6 +60,11 @@ func (r *pgProductsRepository) UpdateProduct(product *entities.Products) error {
 	if err := r.db.GetDB().Model(&entities.Products{}).Where("id = ?", product.ID).Updates(product).Error; err != nil {
 		return err
 	}
+
+	if err := r.db.GetDB().First(product, "id = ?", product.ID).Error; err != nil {
+		return err
+	}
+
 	return nil
 }
 
