@@ -5,6 +5,7 @@ import (
 	"finances-api/db"
 	"finances-api/server"
 	"log"
+	"time"
 )
 
 func main() {
@@ -18,6 +19,18 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error connecting to database: %v", err)
 	}
+
+	go func() {
+		defer func() {
+			if r := recover(); r != nil {
+				log.Printf("Recovered from panic: %v", r)
+			}
+		}()
+		time.Sleep(5 * time.Second)
+		log.Println("Starting RabbitMQ server...")
+		rabbitServer := server.NewRabbitMQServer(db)
+		rabbitServer.Start()
+	}()
 
 	// Initialize the server
 	server := server.NewServer(db)

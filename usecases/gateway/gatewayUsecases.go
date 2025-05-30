@@ -55,3 +55,19 @@ func (f *GatewayUsecase) CreateCheckoutSession(priceID, customerID, successURL, 
 	}
 	return sessionID, nil
 }
+
+func (f *GatewayUsecase) CreateCustomer(name, email, localUserID string) (string, error) {
+	customerID, err := f.Repository.CreateCustomer(name, email, localUserID)
+	if err != nil {
+		return "", err
+	}
+	return customerID, nil
+}
+
+func (f *GatewayUsecase) UpdateCustomer(customerID, name, email string) error {
+	err := f.Repository.UpdateCustomer(customerID, name, email)
+	if err != nil {
+		return err
+	}
+	return nil
+}
