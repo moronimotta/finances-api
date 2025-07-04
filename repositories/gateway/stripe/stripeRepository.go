@@ -12,10 +12,6 @@ type StripeRepository struct {
 	StripeCustomer
 }
 
-type StripeCheckout interface {
-	CreateCheckoutSession(priceID, cutomerID, successURL, cancelURL string) (string, error)
-}
-
 func NewStripeRepository() repositories.GatewayRepository {
 	key := os.Getenv("STRIPE_KEY")
 	return StripeRepository{

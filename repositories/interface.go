@@ -9,7 +9,7 @@ type GatewayRepository interface {
 	CreateProduct(name, description string, localProduct entities.Products) (string, error)
 	CreatePrice(productID string, unitAmount int64, currency string) (string, error)
 	UpdateProduct(productID, name, description string, meta meta.Meta) error
-	CreateCheckoutSession(productID, priceID, successURL, cancelURL string) (string, error)
+	CreateCheckoutSession(productID, priceID string) (string, error)
 	DeactivateProduct(productID string) error
 	CreateCustomer(name, email, localUserID string) (string, error)
 	UpdateCustomer(customerID, name, email string) error

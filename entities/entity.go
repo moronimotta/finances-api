@@ -26,8 +26,6 @@ type Products struct {
 type Checkout struct {
 	CustomerID  string `json:"customer_id"`
 	PriceID     string `json:"price_id"`
-	SuccessURL  string `json:"success_url"`
-	CancelURL   string `json:"cancel_url"`
 	SessionID   string `json:"session_id"`
 	GatewayName string `json:"gateway_name"`
 }

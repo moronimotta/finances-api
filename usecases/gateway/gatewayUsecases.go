@@ -48,8 +48,8 @@ func (f *GatewayUsecase) UpdateProduct(productID, name, description string, meta
 	return nil
 }
 
-func (f *GatewayUsecase) CreateCheckoutSession(priceID, customerID, successURL, cancelURL string) (string, error) {
-	sessionID, err := f.Repository.CreateCheckoutSession(priceID, customerID, successURL, cancelURL)
+func (f *GatewayUsecase) CreateCheckoutSession(priceID, customerID string) (string, error) {
+	sessionID, err := f.Repository.CreateCheckoutSession(priceID, customerID)
 	if err != nil {
 		return "", err
 	}

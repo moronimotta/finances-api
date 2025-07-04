@@ -62,7 +62,7 @@ func (s *Server) initializePaymentHttpHandler() {
 			return
 		}
 
-		checkoutURL, err := gatewayHandler.Repository.CreateCheckoutSession(checkout.PriceID, checkout.CustomerID, checkout.SuccessURL, checkout.CancelURL)
+		checkoutURL, err := gatewayHandler.Repository.CreateCheckoutSession(checkout.PriceID, checkout.CustomerID)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error creating checkout session"})
 			return
