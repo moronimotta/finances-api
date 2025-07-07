@@ -24,10 +24,10 @@ type Products struct {
 }
 
 type Checkout struct {
-	CustomerID  string `json:"customer_id"`
-	PriceID     string `json:"price_id"`
-	SessionID   string `json:"session_id"`
-	GatewayName string `json:"gateway_name"`
+	CustomerID  string   `json:"customer_id"`
+	PriceID     []string `json:"price_id"`
+	SessionID   string   `json:"session_id"`
+	GatewayName string   `json:"gateway_name"`
 }
 
 type UserProducts struct {

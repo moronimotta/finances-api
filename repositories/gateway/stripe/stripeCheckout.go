@@ -12,7 +12,7 @@ type stripeCheckoutRepository struct {
 }
 
 type StripeCheckout interface {
-	CreateCheckoutSession(priceID, cutomerID string) (string, error)
+	CreateCheckoutSession(priceID []string, cutomerID string) (string, error)
 }
 
 func NewStripeCheckoutRepository(key string) StripeCheckout {
@@ -21,20 +21,21 @@ func NewStripeCheckoutRepository(key string) StripeCheckout {
 	}
 }
 
-func (r *stripeCheckoutRepository) CreateCheckoutSession(priceID, customerID string) (string, error) {
+func (r *stripeCheckoutRepository) CreateCheckoutSession(priceID []string, customerID string) (string, error) {
 	stripe.Key = r.stripeKey
-
+	lineItems := []*stripe.CheckoutSessionLineItemParams{}
+	for _, id := range priceID {
+		lineItems = append(lineItems, &stripe.CheckoutSessionLineItemParams{
+			Price:    stripe.String(id),
+			Quantity: stripe.Int64(1),
+		})
+	}
 	params := &stripe.CheckoutSessionParams{
 		PaymentMethodTypes: stripe.StringSlice([]string{"card"}),
-		LineItems: []*stripe.CheckoutSessionLineItemParams{
-			{
-				Price:    stripe.String(priceID),
-				Quantity: stripe.Int64(1),
-			},
-		},
-		Customer: stripe.String(customerID),
-		Mode:     stripe.String(string(stripe.CheckoutSessionModePayment)),
-		UIMode:   stripe.String("embedded"),
+		LineItems:          lineItems,
+		Customer:           stripe.String(customerID),
+		Mode:               stripe.String(string(stripe.CheckoutSessionModePayment)),
+		UIMode:             stripe.String("embedded"),
 	}
 
 	if os.Getenv("STRIPE_SUCCESS_URL") != "" {

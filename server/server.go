@@ -67,7 +67,7 @@ func (s *Server) initializePaymentHttpHandler() {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error creating checkout session"})
 			return
 		}
-		ctx.JSON(http.StatusOK, gin.H{"checkout_url": checkoutURL})
+		ctx.JSON(http.StatusOK, gin.H{"client_secret": checkoutURL})
 	})
 
 	s.app.POST("/webhook/stripe", func(ctx *gin.Context) {
