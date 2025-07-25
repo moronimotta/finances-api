@@ -20,6 +20,11 @@ func main() {
 		log.Fatalf("Error connecting to database: %v", err)
 	}
 
+	// initialize Redis
+	redisServer := server.NewRedisServer(db)
+	redisClient := redisServer.Start()
+	defer redisServer.Close()
+
 	go func() {
 		defer func() {
 			if r := recover(); r != nil {
@@ -28,12 +33,12 @@ func main() {
 		}()
 		time.Sleep(5 * time.Second)
 		log.Println("Starting RabbitMQ server...")
-		rabbitServer := server.NewRabbitMQServer(db)
+		rabbitServer := server.NewRabbitMQServer(db, redisClient)
 		rabbitServer.Start()
 	}()
 
 	// Initialize the server
-	server := server.NewServer(db)
+	server := server.NewServer(db, redisClient)
 	server.Start()
 
 }

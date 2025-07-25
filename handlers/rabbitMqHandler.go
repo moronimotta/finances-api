@@ -9,14 +9,16 @@ import (
 	"os"
 
 	messageWorker "github.com/moronimotta/message-worker-module"
+	"github.com/redis/go-redis/v9"
 )
 
 type RabbitMqHandler struct {
 	DbUsecase      usecases.DbUsecase
 	GatewayUsecase usescases.GatewayUsecase
+	redisClient    *redis.Client
 }
 
-func NewRabbitMqHandler(db db.Database, gatewayName string) *RabbitMqHandler {
+func NewRabbitMqHandler(db db.Database, gatewayName string, redisClient *redis.Client) *RabbitMqHandler {
 	var usecaseDb usecases.DbUsecase
 	var usecaseGateway usescases.GatewayUsecase
 
@@ -37,6 +39,7 @@ func NewRabbitMqHandler(db db.Database, gatewayName string) *RabbitMqHandler {
 	return &RabbitMqHandler{
 		DbUsecase:      usecaseDb,
 		GatewayUsecase: usecaseGateway,
+		redisClient:    redisClient,
 	}
 }
 

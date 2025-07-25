@@ -8,6 +8,7 @@ import (
 
 	messageWorker "github.com/moronimotta/message-worker-module"
 	amqp "github.com/rabbitmq/amqp091-go"
+	"github.com/redis/go-redis/v9"
 )
 
 type RabbitMQServer struct {
@@ -15,20 +16,22 @@ type RabbitMQServer struct {
 	connectionUrl string
 	queueName     string
 	topicName     string
+	redisClient   *redis.Client
 }
 
-func NewRabbitMQServer(db db.Database) *RabbitMQServer {
+func NewRabbitMQServer(db db.Database, redisClient *redis.Client) *RabbitMQServer {
 
 	return &RabbitMQServer{
 		db:            db,
 		connectionUrl: os.Getenv("RABBITMQ_URL"),
 		queueName:     os.Getenv("RABBITMQ_QUEUE_NAME"),
 		topicName:     os.Getenv("RABBITMQ_TOPIC_NAME"),
+		redisClient:   redisClient,
 	}
 }
 func (s *RabbitMQServer) Start() {
 	// Setup repositories and handler
-	rabbitMqHandler := handlers.NewRabbitMqHandler(s.db, "stripe")
+	rabbitMqHandler := handlers.NewRabbitMqHandler(s.db, "stripe", s.redisClient)
 
 	// CONSUMER
 	var consumerInput messageWorker.Consumer
