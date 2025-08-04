@@ -32,6 +32,14 @@ func (f *GatewayUsecase) CreatePrice(productID string, unitAmount int64, currenc
 	return priceID, nil
 }
 
+func (f *GatewayUsecase) ChangePrice(oldPriceID, productID string, unitAmount int64, currency string) (string, error) {
+	newPriceID, err := f.Repository.ChangePrice(oldPriceID, productID, unitAmount, currency)
+	if err != nil {
+		return "", err
+	}
+	return newPriceID, nil
+}
+
 func (f *GatewayUsecase) DeactivateProduct(productID string) error {
 	err := f.Repository.DeactivateProduct(productID)
 	if err != nil {

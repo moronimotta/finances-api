@@ -8,6 +8,7 @@ import (
 type GatewayRepository interface {
 	CreateProduct(name, description string, localProduct entities.Products) (string, error)
 	CreatePrice(productID string, unitAmount int64, currency string) (string, error)
+	ChangePrice(oldPriceID, productID string, unitAmount int64, currency string) (string, error)
 	UpdateProduct(productID, name, description string, meta meta.Meta) error
 	CreateCheckoutSession(priceID []string, productID string) (string, error)
 	DeactivateProduct(productID string) error

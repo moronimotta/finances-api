@@ -48,7 +48,7 @@ func (s *Server) initProductsRoutes() {
 
 		gatewayHandler.UpdateProduct(product.GatewayProductExternalID, "", "", meta)
 
-		ctx.JSON(http.StatusOK, gin.H{"message": "Product created successfully"})
+		ctx.JSON(http.StatusOK, gin.H{"message": "Product created successfully: ", "product_id": product.ID, "external_id": product.GatewayProductExternalID})
 	})
 
 	s.app.GET("/products", func(ctx *gin.Context) {
@@ -79,13 +79,26 @@ func (s *Server) initProductsRoutes() {
 			return
 		}
 
-		if product.Price != 0 {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Price cannot be changed"})
+		if product.ID == "" {
+			product.ID = id
+		}
+		if id != product.ID {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Product ID mismatch"})
 			return
 		}
-		if product.Name == "" && product.Description == "" {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": "No data to update"})
+		gatewayHandler, err := handlers.NewGatewayHttpHandler(product.GatewayName)
+		if err != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid gateway"})
 			return
+		}
+
+		if product.Price != 0 {
+			newPriceID, err := gatewayHandler.ChangePrice(product.GatewayPriceExternalID, product.GatewayProductExternalID, product.Price, product.Currency)
+			if err != nil {
+				ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error changing price in gateway"})
+				return
+			}
+			product.GatewayPriceExternalID = newPriceID
 		}
 
 		product.ID = id
@@ -94,13 +107,10 @@ func (s *Server) initProductsRoutes() {
 			return
 		}
 
-		gatewayHandler, err := handlers.NewGatewayHttpHandler(product.GatewayName)
-		if err != nil {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid gateway"})
-			return
-		}
+		meta := meta.New()
+		meta.Add("gateway_current_price_id", product.GatewayPriceExternalID)
 
-		if err := gatewayHandler.UpdateProduct(product.GatewayProductExternalID, product.Name, product.Description, meta.Meta{}); err != nil {
+		if err := gatewayHandler.UpdateProduct(product.GatewayProductExternalID, product.Name, product.Description, meta); err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error updating product in gateway"})
 			return
 		}

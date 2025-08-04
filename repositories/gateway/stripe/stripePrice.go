@@ -7,6 +7,7 @@ import (
 
 type StripePrice interface {
 	CreatePrice(productID string, unitAmount int64, currency string) (string, error)
+	ChangePrice(oldPriceID, productID string, unitAmount int64, currency string) (string, error)
 }
 
 type stripePriceRepository struct {
@@ -47,4 +48,22 @@ func (r *stripePriceRepository) UpdatePrice(priceID string, unitAmount int64, cu
 		return err
 	}
 	return nil
+}
+
+func (r *stripePriceRepository) ChangePrice(oldPriceID, productID string, unitAmount int64, currency string) (string, error) {
+	stripe.Key = r.stripeKey
+	params := &stripe.PriceParams{
+		Active: stripe.Bool(false),
+	}
+	_, err := price.Update(oldPriceID, params)
+	if err != nil {
+		return "", err
+	}
+
+	new_price, err := r.CreatePrice(productID, unitAmount, currency)
+	if err != nil {
+		return "", err
+	}
+
+	return new_price, nil
 }
