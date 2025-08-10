@@ -55,14 +55,26 @@ type Invoices struct {
 }
 
 type Transactions struct {
-	ID          string `json:"id"`
-	AmountPayed int64  `json:"amount_paid"`
-	AmountTotal int64  `json:"amount_total"`
-	InvoiceID   string `json:"invoice_id"`
-	CreatedAt   string `json:"created_at"`
-	UpdatedAt   string `json:"updated_at"`
-	DeletedAt   string `json:"deleted_at"`
-	ExternalID  string `json:"external_id"`
+	ID                string `json:"id"`
+	UserID            string `json:"user_id"`
+	UserExternalID    string `json:"user_external_id"`
+	ProductID         string `json:"product_id"`
+	ProductExternalID string `json:"product_external_id"`
+	AmountPayed       int64  `json:"amount_paid"`
+	AmountTotal       int64  `json:"amount_total"`
+	AmountRefunded    int64  `json:"amount_refunded"`
+	Status            string `json:"status"`          // paid, pending, failed, refunded
+	Type              string `json:"type"`            // product, subscription
+	PaymentMethod     string `json:"payment_method"`  // card, bank_transfer
+	PaymentDetails    string `json:"payment_details"` // cardbrand...
+	ReceiptURL        string `json:"receipt_url"`
+	ExternalID        string `json:"external_id"` // e.g Stripe will be charge_id
+	Currency          string `json:"currency"`
+
+	CreatedAt string `json:"created_at"`
+	UpdatedAt string `json:"updated_at"`
+	DeletedAt string `json:"deleted_at"`
+	// InvoiceID      string `json:"invoice_id"` // only for subscriptions
 }
 
 type Gateway struct {

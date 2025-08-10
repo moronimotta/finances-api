@@ -3,6 +3,7 @@ package server
 import (
 	"finances-api/db"
 	"finances-api/handlers"
+	"finances-api/usecases"
 	"log"
 	"os"
 
@@ -13,6 +14,7 @@ import (
 
 type RabbitMQServer struct {
 	db            db.Database
+	usecases      *usecases.PaymentAPIUsecases
 	connectionUrl string
 	queueName     string
 	topicName     string
@@ -21,8 +23,11 @@ type RabbitMQServer struct {
 
 func NewRabbitMQServer(db db.Database, redisClient *redis.Client) *RabbitMQServer {
 
+	usecases := usecases.NewPaymentAPIUsecases("stripe", db)
+
 	return &RabbitMQServer{
 		db:            db,
+		usecases:      usecases,
 		connectionUrl: os.Getenv("RABBITMQ_URL"),
 		queueName:     os.Getenv("RABBITMQ_QUEUE_NAME"),
 		topicName:     os.Getenv("RABBITMQ_TOPIC_NAME"),
@@ -31,7 +36,7 @@ func NewRabbitMQServer(db db.Database, redisClient *redis.Client) *RabbitMQServe
 }
 func (s *RabbitMQServer) Start() {
 	// Setup repositories and handler
-	rabbitMqHandler := handlers.NewRabbitMqHandler(s.db, "stripe", s.redisClient)
+	rabbitMqHandler := handlers.NewRabbitMqHandler(s.usecases, s.redisClient)
 
 	// CONSUMER
 	var consumerInput messageWorker.Consumer

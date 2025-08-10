@@ -10,6 +10,7 @@ type StripeRepository struct {
 	StripePrice
 	StripeCheckout
 	StripeCustomer
+	StripeCharge
 }
 
 func NewStripeRepository() repositories.GatewayRepository {
@@ -19,5 +20,6 @@ func NewStripeRepository() repositories.GatewayRepository {
 		StripePrice:    NewStripePriceRepository(key),
 		StripeCheckout: NewStripeCheckoutRepository(key),
 		StripeCustomer: NewStripeCustomerRepository(key),
+		StripeCharge:   NewStripeChargeRepository(key),
 	}
 }

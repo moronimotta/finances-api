@@ -17,7 +17,7 @@ func (s *Server) initTransactionsRoutes() {
 			return
 		}
 
-		if err := s.pgHandler.Repository.CreateTransaction(&transaction); err != nil {
+		if err := s.usecases.Db.CreateTransaction(&transaction); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error creating transaction"})
 			return
 		}
@@ -27,7 +27,7 @@ func (s *Server) initTransactionsRoutes() {
 
 	s.app.GET("/transactions/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
-		transaction, err := s.pgHandler.Repository.GetTransactionByID(id)
+		transaction, err := s.usecases.Db.GetTransactionByID(id)
 		if err != nil {
 			ctx.JSON(http.StatusNotFound, gin.H{"error": "Transaction not found"})
 			return
@@ -46,7 +46,7 @@ func (s *Server) initTransactionsRoutes() {
 
 		transaction.ID = id // Ensure the ID is set for the update
 
-		if err := s.pgHandler.Repository.UpdateTransaction(&transaction); err != nil {
+		if err := s.usecases.Db.UpdateTransaction(&transaction); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error updating transaction"})
 			return
 		}
@@ -55,7 +55,7 @@ func (s *Server) initTransactionsRoutes() {
 	})
 	s.app.DELETE("/transactions/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
-		if err := s.pgHandler.Repository.DeleteTransaction(id); err != nil {
+		if err := s.usecases.Db.DeleteTransaction(id); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error deleting transaction"})
 			return
 		}
@@ -65,7 +65,7 @@ func (s *Server) initTransactionsRoutes() {
 		userID := ctx.Param("user_id")
 		productID := ctx.Param("product_id")
 
-		transactions, err := s.pgHandler.Repository.GetTransactionsByUserIDAndProductID(userID, productID)
+		transactions, err := s.usecases.Db.GetTransactionsByUserIDAndProductID(userID, productID)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting transactions"})
 			return
@@ -74,7 +74,7 @@ func (s *Server) initTransactionsRoutes() {
 	})
 
 	s.app.GET("/transactions", func(ctx *gin.Context) {
-		transactions, err := s.pgHandler.Repository.GetAllTransactions()
+		transactions, err := s.usecases.Db.GetAllTransactions()
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting transactions"})
 			return
@@ -85,7 +85,7 @@ func (s *Server) initTransactionsRoutes() {
 	s.app.GET("/transactions/product/:product_id", func(ctx *gin.Context) {
 		productID := ctx.Param("product_id")
 
-		transactions, err := s.pgHandler.Repository.GetTransactionsByProductID(productID)
+		transactions, err := s.usecases.Db.GetTransactionsByProductID(productID)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting transactions"})
 			return

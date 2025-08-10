@@ -17,7 +17,7 @@ func (s *Server) initGatewayRoutes() {
 			return
 		}
 
-		if err := s.pgHandler.Repository.CreateGateway(gateway); err != nil {
+		if err := s.usecases.Db.CreateGateway(gateway); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error creating gateway"})
 			return
 		}
@@ -27,7 +27,7 @@ func (s *Server) initGatewayRoutes() {
 
 	s.app.GET("/gateways/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
-		gateway, err := s.pgHandler.Repository.GetGatewayByID(id)
+		gateway, err := s.usecases.Db.GetGatewayByID(id)
 		if err != nil {
 			ctx.JSON(http.StatusNotFound, gin.H{"error": "Gateway not found"})
 			return
@@ -36,7 +36,7 @@ func (s *Server) initGatewayRoutes() {
 	})
 
 	s.app.GET("/gateways", func(ctx *gin.Context) {
-		gateways, err := s.pgHandler.Repository.GetAllGateways()
+		gateways, err := s.usecases.Db.GetAllGateways()
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting gateways"})
 			return
@@ -55,7 +55,7 @@ func (s *Server) initGatewayRoutes() {
 
 		gateway.ID = id // Ensure the ID is set for the update
 
-		if err := s.pgHandler.Repository.UpdateGateway(&gateway); err != nil {
+		if err := s.usecases.Db.UpdateGateway(&gateway); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error updating gateway"})
 			return
 		}
@@ -64,7 +64,7 @@ func (s *Server) initGatewayRoutes() {
 	})
 	s.app.DELETE("/gateways/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
-		if err := s.pgHandler.Repository.DeleteGateway(id); err != nil {
+		if err := s.usecases.Db.DeleteGateway(id); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error deleting gateway"})
 			return
 		}

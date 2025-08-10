@@ -2,9 +2,7 @@ package handlers
 
 import (
 	"errors"
-	"finances-api/db"
-	usecases "finances-api/usecases/db"
-	usescases "finances-api/usecases/gateway"
+	usecases "finances-api/usecases"
 	"log"
 	"os"
 
@@ -13,33 +11,15 @@ import (
 )
 
 type RabbitMqHandler struct {
-	DbUsecase      usecases.DbUsecase
-	GatewayUsecase usescases.GatewayUsecase
-	redisClient    *redis.Client
+	usecases    *usecases.PaymentAPIUsecases
+	redisClient *redis.Client
 }
 
-func NewRabbitMqHandler(db db.Database, gatewayName string, redisClient *redis.Client) *RabbitMqHandler {
-	var usecaseDb usecases.DbUsecase
-	var usecaseGateway usescases.GatewayUsecase
-
-	switch db.GetDB().Dialector.Name() {
-	case "postgres":
-		usecaseDb = *usecases.NewPgUsecase(db)
-	default:
-		usecaseDb = usecases.DbUsecase{}
-	}
-
-	switch gatewayName {
-	case "stripe":
-		usecaseGateway = *usescases.NewStripeUsecase()
-	default:
-		usecaseGateway = usescases.GatewayUsecase{}
-	}
+func NewRabbitMqHandler(usecases *usecases.PaymentAPIUsecases, redisClient *redis.Client) *RabbitMqHandler {
 
 	return &RabbitMqHandler{
-		DbUsecase:      usecaseDb,
-		GatewayUsecase: usecaseGateway,
-		redisClient:    redisClient,
+		usecases:    usecases,
+		redisClient: redisClient,
 	}
 }
 
@@ -69,7 +49,7 @@ func (h *RabbitMqHandler) EventBus(event messageWorker.Event) error {
 		email := dataMap["email"].(string)
 		userID := dataMap["user_id"].(string)
 
-		externalID, err := h.GatewayUsecase.Repository.CreateCustomer(name, email, userID)
+		externalID, err := h.usecases.Gateway.CreateCustomer(name, email, userID)
 		if err != nil {
 			log.Printf("Error creating customer: %v", err)
 		}
@@ -99,7 +79,7 @@ func (h *RabbitMqHandler) EventBus(event messageWorker.Event) error {
 			email = v
 		}
 		externalID := dataMap["external_id"].(string)
-		if err := h.GatewayUsecase.Repository.UpdateCustomer(externalID, name, email); err != nil {
+		if err := h.usecases.Gateway.UpdateCustomer(externalID, name, email); err != nil {
 			log.Printf("Error updating customer: %v", err)
 		}
 	default:

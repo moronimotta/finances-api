@@ -17,7 +17,7 @@ func (s *Server) initUserProductsRoutes() {
 			return
 		}
 
-		if err := s.pgHandler.Repository.CreateUserProduct(userProduct.UserID, userProduct.ProductID); err != nil {
+		if err := s.usecases.Db.CreateUserProduct(userProduct.UserID, userProduct.ProductID); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error creating user product"})
 			return
 		}
@@ -26,7 +26,7 @@ func (s *Server) initUserProductsRoutes() {
 	})
 	s.app.GET("/user-products/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
-		userProduct, err := s.pgHandler.Repository.GetUserProductByID(id)
+		userProduct, err := s.usecases.Db.GetUserProductByID(id)
 		if err != nil {
 			ctx.JSON(http.StatusNotFound, gin.H{"error": "User product not found"})
 			return
@@ -44,7 +44,7 @@ func (s *Server) initUserProductsRoutes() {
 
 		userProduct.ID = id // Ensure the ID is set for the update
 
-		if err := s.pgHandler.Repository.UpdateUserProduct(&userProduct); err != nil {
+		if err := s.usecases.Db.UpdateUserProduct(&userProduct); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error updating user product"})
 			return
 		}
@@ -63,7 +63,7 @@ func (s *Server) initUserProductsRoutes() {
 
 		userProduct.ID = id // Ensure the ID is set for the update
 
-		if err := s.pgHandler.Repository.UpdateUserProductStatus(&userProduct); err != nil {
+		if err := s.usecases.Db.UpdateUserProductStatus(&userProduct); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error updating user product status"})
 			return
 		}
@@ -72,7 +72,7 @@ func (s *Server) initUserProductsRoutes() {
 	})
 	s.app.DELETE("/user-products/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
-		if err := s.pgHandler.Repository.DeleteUserProduct(id); err != nil {
+		if err := s.usecases.Db.DeleteUserProduct(id); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error deleting user product"})
 			return
 		}
@@ -81,7 +81,7 @@ func (s *Server) initUserProductsRoutes() {
 	s.app.GET("/user-products/user/:user_id", func(ctx *gin.Context) {
 		userID := ctx.Param("user_id")
 
-		userProducts, err := s.pgHandler.Repository.GetUserProductsByUserID(userID)
+		userProducts, err := s.usecases.Db.GetUserProductsByUserID(userID)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting user products"})
 			return

@@ -3,6 +3,7 @@ package server
 import (
 	"finances-api/entities"
 	"finances-api/handlers"
+	"finances-api/usecases"
 	logs "finances-api/utils/logs"
 	"io/ioutil"
 	"net/http"
@@ -15,22 +16,21 @@ import (
 
 type Server struct {
 	app         *gin.Engine
-	pgHandler   *handlers.DbHttpHandler
+	db          db.Database
+	usecases    *usecases.PaymentAPIUsecases
 	redisClient *redis.Client
 }
 
 func NewServer(db db.Database, redisClient *redis.Client) *Server {
 	logs.InitLogging()
 
-	pgHandler, err := handlers.NewDbHttpHandler("postgres", db)
-	if err != nil {
-		return nil
-	}
+	usecases := usecases.NewPaymentAPIUsecases("stripe", db)
 
 	return &Server{
 		app:         gin.Default(),
-		pgHandler:   pgHandler,
+		db:          db,
 		redisClient: redisClient,
+		usecases:    usecases,
 	}
 }
 func (s *Server) Start() {
@@ -59,13 +59,7 @@ func (s *Server) initializePaymentHttpHandler() {
 			return
 		}
 
-		gatewayHandler, err := handlers.NewGatewayHttpHandler(checkout.GatewayName)
-		if err != nil {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid gateway"})
-			return
-		}
-
-		checkoutURL, err := gatewayHandler.Repository.CreateCheckoutSession(checkout.PriceID, checkout.CustomerID)
+		checkoutURL, err := s.usecases.Gateway.CreateCheckoutSession(checkout.PriceID, checkout.CustomerID)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error creating checkout session"})
 			return
@@ -76,7 +70,8 @@ func (s *Server) initializePaymentHttpHandler() {
 	s.app.POST("/webhook/stripe", func(ctx *gin.Context) {
 		const MaxBodyBytes = int64(65536)
 
-		stripeHandler, err := handlers.NewGatewayHttpHandler("stripe")
+		// calls the webhookhandler
+		stripeHandler, err := handlers.NewWebhookHandler("stripe", s.usecases)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid gateway"})
 			return
@@ -84,13 +79,17 @@ func (s *Server) initializePaymentHttpHandler() {
 
 		ctx.Request.Body = http.MaxBytesReader(ctx.Writer, ctx.Request.Body, MaxBodyBytes)
 		payload, err := ioutil.ReadAll(ctx.Request.Body)
-
-		stripeHandler.EventBus(payload, ctx.Request.Header.Get("Stripe-Signature"))
-
 		if err != nil {
 			ctx.JSON(http.StatusServiceUnavailable, gin.H{"error": "Error reading request body"})
 			return
 		}
+
+		if err := stripeHandler.EventBus(payload, ctx.Request.Header.Get("Stripe-Signature")); err != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		ctx.JSON(http.StatusOK, gin.H{"status": "success"})
 	})
 
 }

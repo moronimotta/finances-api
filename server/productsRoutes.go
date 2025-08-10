@@ -2,7 +2,6 @@ package server
 
 import (
 	"finances-api/entities"
-	"finances-api/handlers"
 	"finances-api/utils/meta"
 	"net/http"
 
@@ -18,25 +17,20 @@ func (s *Server) initProductsRoutes() {
 			return
 		}
 
-		gatewayHandler, err := handlers.NewGatewayHttpHandler(product.GatewayName)
-		if err != nil {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid gateway"})
-			return
-		}
-
-		product.GatewayProductExternalID, err = gatewayHandler.CreateProduct(product.Name, product.Description, product)
+		var err error
+		product.GatewayProductExternalID, err = s.usecases.Gateway.CreateProduct(product.Name, product.Description, product)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error creating product in gateway"})
 			return
 		}
 
-		product.GatewayPriceExternalID, err = gatewayHandler.CreatePrice(product.GatewayProductExternalID, product.Price, product.Currency)
+		product.GatewayPriceExternalID, err = s.usecases.Gateway.CreatePrice(product.GatewayProductExternalID, product.Price, product.Currency)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error creating price in gateway"})
 			return
 		}
 
-		s.pgHandler.Repository.CreateProduct(&product)
+		s.usecases.Db.CreateProduct(&product)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error creating product in database"})
 			return
@@ -46,13 +40,13 @@ func (s *Server) initProductsRoutes() {
 		meta.Add("local_product_id", product.ID)
 		meta.Add("gateway_current_price_id", product.GatewayPriceExternalID)
 
-		gatewayHandler.UpdateProduct(product.GatewayProductExternalID, "", "", meta)
+		s.usecases.Gateway.UpdateProduct(product.GatewayProductExternalID, "", "", meta)
 
 		ctx.JSON(http.StatusOK, gin.H{"message": "Product created successfully: ", "product_id": product.ID, "external_id": product.GatewayProductExternalID})
 	})
 
 	s.app.GET("/products", func(ctx *gin.Context) {
-		products, err := s.pgHandler.Repository.GetAllProducts()
+		products, err := s.usecases.Db.GetAllProducts()
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error getting products"})
 			return
@@ -62,7 +56,7 @@ func (s *Server) initProductsRoutes() {
 
 	s.app.GET("/products/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
-		product, err := s.pgHandler.Repository.GetProductByID(id)
+		product, err := s.usecases.Db.GetProductByID(id)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error getting product"})
 			return
@@ -86,14 +80,9 @@ func (s *Server) initProductsRoutes() {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Product ID mismatch"})
 			return
 		}
-		gatewayHandler, err := handlers.NewGatewayHttpHandler(product.GatewayName)
-		if err != nil {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid gateway"})
-			return
-		}
 
 		if product.Price != 0 {
-			newPriceID, err := gatewayHandler.ChangePrice(product.GatewayPriceExternalID, product.GatewayProductExternalID, product.Price, product.Currency)
+			newPriceID, err := s.usecases.Gateway.ChangePrice(product.GatewayPriceExternalID, product.GatewayProductExternalID, product.Price, product.Currency)
 			if err != nil {
 				ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error changing price in gateway"})
 				return
@@ -102,7 +91,7 @@ func (s *Server) initProductsRoutes() {
 		}
 
 		product.ID = id
-		if err := s.pgHandler.Repository.UpdateProduct(&product); err != nil {
+		if err := s.usecases.Db.UpdateProduct(&product); err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error updating product"})
 			return
 		}
@@ -110,7 +99,7 @@ func (s *Server) initProductsRoutes() {
 		meta := meta.New()
 		meta.Add("gateway_current_price_id", product.GatewayPriceExternalID)
 
-		if err := gatewayHandler.UpdateProduct(product.GatewayProductExternalID, product.Name, product.Description, meta); err != nil {
+		if err := s.usecases.Gateway.UpdateProduct(product.GatewayProductExternalID, product.Name, product.Description, meta); err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error updating product in gateway"})
 			return
 		}
@@ -120,22 +109,16 @@ func (s *Server) initProductsRoutes() {
 
 	s.app.DELETE("/products/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
-		product, err := s.pgHandler.Repository.GetProductByID(id)
+		product, err := s.usecases.Db.GetProductByID(id)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error getting product"})
 			return
 		}
-
-		gatewayHandler, err := handlers.NewGatewayHttpHandler(product.GatewayName)
-		if err != nil {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid gateway"})
-			return
-		}
-		if err := gatewayHandler.DeactivateProduct(product.GatewayProductExternalID); err != nil {
+		if err := s.usecases.Gateway.DeactivateProduct(product.GatewayProductExternalID); err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error deactivating product in gateway"})
 			return
 		}
-		if err := s.pgHandler.Repository.DeleteProduct(product.ID); err != nil {
+		if err := s.usecases.Db.DeleteProduct(product.ID); err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error deleting product"})
 			return
 		}
@@ -144,7 +127,7 @@ func (s *Server) initProductsRoutes() {
 
 	s.app.GET("/products/g/:external_id", func(ctx *gin.Context) {
 		externalID := ctx.Param("external_id")
-		product, err := s.pgHandler.Repository.GetProductByExternalID(externalID)
+		product, err := s.usecases.Db.GetProductByExternalID(externalID)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error getting product"})
 			return

@@ -17,7 +17,7 @@ func (s *Server) initInvoicesRoutes() {
 			return
 		}
 
-		if err := s.pgHandler.Repository.CreateInvoice(&invoice); err != nil {
+		if err := s.usecases.Db.CreateInvoice(&invoice); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error creating invoice"})
 			return
 		}
@@ -26,7 +26,7 @@ func (s *Server) initInvoicesRoutes() {
 	})
 	s.app.GET("/invoices/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
-		invoice, err := s.pgHandler.Repository.GetInvoiceByID(id)
+		invoice, err := s.usecases.Db.GetInvoiceByID(id)
 		if err != nil {
 			ctx.JSON(http.StatusNotFound, gin.H{"error": "Invoice not found"})
 			return
@@ -44,7 +44,7 @@ func (s *Server) initInvoicesRoutes() {
 
 		invoice.ID = id // Ensure the ID is set for the update
 
-		if err := s.pgHandler.Repository.UpdateInvoice(&invoice); err != nil {
+		if err := s.usecases.Db.UpdateInvoice(&invoice); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error updating invoice"})
 			return
 		}
@@ -53,7 +53,7 @@ func (s *Server) initInvoicesRoutes() {
 	})
 	s.app.DELETE("/invoices/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
-		if err := s.pgHandler.Repository.DeleteInvoice(id); err != nil {
+		if err := s.usecases.Db.DeleteInvoice(id); err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error deleting invoice"})
 			return
 		}
@@ -63,7 +63,7 @@ func (s *Server) initInvoicesRoutes() {
 		userID := ctx.Param("user_id")
 		productID := ctx.Param("product_id")
 
-		invoices, err := s.pgHandler.Repository.GetInvoicesByUserIDAndProductID(userID, productID)
+		invoices, err := s.usecases.Db.GetInvoicesByUserIDAndProductID(userID, productID)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting invoices"})
 			return
@@ -72,7 +72,7 @@ func (s *Server) initInvoicesRoutes() {
 		ctx.JSON(http.StatusOK, invoices)
 	})
 	s.app.GET("/invoices", func(ctx *gin.Context) {
-		invoices, err := s.pgHandler.Repository.GetAllInvoices()
+		invoices, err := s.usecases.Db.GetAllInvoices()
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting invoices"})
 			return
@@ -82,7 +82,7 @@ func (s *Server) initInvoicesRoutes() {
 	s.app.GET("/invoices/product/:product_id", func(ctx *gin.Context) {
 		productID := ctx.Param("product_id")
 
-		invoices, err := s.pgHandler.Repository.GetInvoicesByProductID(productID)
+		invoices, err := s.usecases.Db.GetInvoicesByProductID(productID)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting invoices"})
 			return
@@ -93,7 +93,7 @@ func (s *Server) initInvoicesRoutes() {
 	s.app.GET("/invoices/customer/:customer_id", func(ctx *gin.Context) {
 		customerID := ctx.Param("customer_id")
 
-		invoices, err := s.pgHandler.Repository.GetInvoicesByCustomerID(customerID)
+		invoices, err := s.usecases.Db.GetInvoicesByCustomerID(customerID)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting invoices"})
 			return
@@ -104,7 +104,7 @@ func (s *Server) initInvoicesRoutes() {
 	s.app.GET("/invoices/payment_status/:payment_status", func(ctx *gin.Context) {
 		paymentStatus := ctx.Param("payment_status")
 
-		invoices, err := s.pgHandler.Repository.GetInvoicesByPaymentStatus(paymentStatus)
+		invoices, err := s.usecases.Db.GetInvoicesByPaymentStatus(paymentStatus)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting invoices"})
 			return
@@ -115,7 +115,7 @@ func (s *Server) initInvoicesRoutes() {
 	s.app.GET("/invoices/payment_method/:payment_method", func(ctx *gin.Context) {
 		paymentMethod := ctx.Param("payment_method")
 
-		invoices, err := s.pgHandler.Repository.GetInvoicesByPaymentMethod(paymentMethod)
+		invoices, err := s.usecases.Db.GetInvoicesByPaymentMethod(paymentMethod)
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting invoices"})
 			return

@@ -3,6 +3,7 @@ package usecases
 import (
 	"finances-api/entities"
 	"finances-api/repositories"
+	stripeRepository "finances-api/repositories/gateway/stripe"
 	"finances-api/utils/meta"
 )
 
@@ -10,7 +11,22 @@ type GatewayUsecase struct {
 	Repository repositories.GatewayRepository
 }
 
-func NewGatewayUsecase(repository repositories.GatewayRepository) *GatewayUsecase {
+// func NewGatewayUsecase(repository repositories.GatewayRepository) *GatewayUsecase {
+// 	return &GatewayUsecase{
+// 		Repository: repository,
+// 	}
+// }
+
+func NewGatewayUsecase(gatewayName string) *GatewayUsecase {
+	var repository repositories.GatewayRepository
+
+	switch gatewayName {
+	case "stripe":
+		repository = stripeRepository.NewStripeRepository()
+	default:
+		repository = nil
+	}
+
 	return &GatewayUsecase{
 		Repository: repository,
 	}
@@ -79,3 +95,14 @@ func (f *GatewayUsecase) UpdateCustomer(customerID, name, email string) error {
 	}
 	return nil
 }
+
+// get charge
+func (f *GatewayUsecase) GetCharge(chargeID string) (entities.Transactions, error) {
+	charge, err := f.Repository.GetCharge(chargeID)
+	if err != nil {
+		return entities.Transactions{}, err
+	}
+	return charge, nil
+}
+
+// func (f *GatewayUsecase) CreateTransaction
