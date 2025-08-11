@@ -1,6 +1,8 @@
 package stripeRepository
 
 import (
+	"finances-api/entities"
+
 	"github.com/stripe/stripe-go/v82"
 	"github.com/stripe/stripe-go/v82/price"
 )
@@ -8,6 +10,7 @@ import (
 type StripePrice interface {
 	CreatePrice(productID string, unitAmount int64, currency string) (string, error)
 	ChangePrice(oldPriceID, productID string, unitAmount int64, currency string) (string, error)
+	GetPrice(priceID []string) ([]entities.TransactionItem, error)
 }
 
 type stripePriceRepository struct {
@@ -66,4 +69,27 @@ func (r *stripePriceRepository) ChangePrice(oldPriceID, productID string, unitAm
 	}
 
 	return new_price, nil
+}
+
+func (r *stripePriceRepository) GetPrice(priceID []string) ([]entities.TransactionItem, error) {
+	stripe.Key = r.stripeKey
+
+	var output []entities.TransactionItem
+
+	for _, id := range priceID {
+		price, err := price.Get(id, nil)
+		if err != nil {
+			return nil, err
+		}
+
+		item := entities.TransactionItem{
+			ProductExternalID: price.Product.ID,
+			UnitAmount:        price.UnitAmount,
+			Currency:          string(price.Currency),
+			Quantity:          1,
+		}
+		output = append(output, item)
+	}
+
+	return output, nil
 }

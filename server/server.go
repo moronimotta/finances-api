@@ -25,6 +25,9 @@ func NewServer(db db.Database, redisClient *redis.Client) *Server {
 	logs.InitLogging()
 
 	usecases := usecases.NewPaymentAPIUsecases("stripe", db)
+	// Inject a RabbitMQ publisher for outbound events
+	var publisher handlers.RabbitPublisher
+	usecases.Pub = &publisher
 
 	return &Server{
 		app:         gin.Default(),
@@ -59,7 +62,7 @@ func (s *Server) initializePaymentHttpHandler() {
 			return
 		}
 
-		checkoutURL, err := s.usecases.Gateway.CreateCheckoutSession(checkout.PriceID, checkout.CustomerID)
+		checkoutURL, err := s.usecases.Gateway.CreateCheckoutSession(checkout.PriceID, checkout.CustomerID, checkout.Meta)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error creating checkout session"})
 			return

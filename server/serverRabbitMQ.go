@@ -24,6 +24,9 @@ type RabbitMQServer struct {
 func NewRabbitMQServer(db db.Database, redisClient *redis.Client) *RabbitMQServer {
 
 	usecases := usecases.NewPaymentAPIUsecases("stripe", db)
+	// Inject a RabbitMQ publisher for outbound events
+	var publisher handlers.RabbitPublisher
+	usecases.Pub = &publisher
 
 	return &RabbitMQServer{
 		db:            db,
@@ -43,6 +46,8 @@ func (s *RabbitMQServer) Start() {
 	consumerInput.ConnectionURL = os.Getenv("RABBITMQ_URL")
 	consumerInput.QueueName = s.queueName
 	consumerInput.TopicName = s.topicName
+
+	log.Println("Starting RabbitMQ consumer...")
 
 	messageWorker.Listen(consumerInput,
 		func(msg amqp.Delivery) {

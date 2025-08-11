@@ -72,8 +72,8 @@ func (f *GatewayUsecase) UpdateProduct(productID, name, description string, meta
 	return nil
 }
 
-func (f *GatewayUsecase) CreateCheckoutSession(priceID []string, customerID string) (string, error) {
-	sessionID, err := f.Repository.CreateCheckoutSession(priceID, customerID)
+func (f *GatewayUsecase) CreateCheckoutSession(priceID []string, customerID string, meta meta.Meta) (string, error) {
+	sessionID, err := f.Repository.CreateCheckoutSession(priceID, customerID, meta)
 	if err != nil {
 		return "", err
 	}
@@ -105,4 +105,10 @@ func (f *GatewayUsecase) GetCharge(chargeID string) (entities.Transactions, erro
 	return charge, nil
 }
 
-// func (f *GatewayUsecase) CreateTransaction
+func (f *GatewayUsecase) GetPrice(priceID []string) ([]entities.TransactionItem, error) {
+	items, err := f.Repository.GetPrice(priceID)
+	if err != nil {
+		return nil, err
+	}
+	return items, nil
+}

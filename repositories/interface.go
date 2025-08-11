@@ -11,7 +11,8 @@ type GatewayRepository interface {
 	ChangePrice(oldPriceID, productID string, unitAmount int64, currency string) (string, error)
 	UpdateProduct(productID, name, description string, meta meta.Meta) error
 	GetCharge(chargeID string) (entities.Transactions, error)
-	CreateCheckoutSession(priceID []string, productID string) (string, error)
+	GetPrice(priceID []string) ([]entities.TransactionItem, error)
+	CreateCheckoutSession(priceID []string, productID string, meta meta.Meta) (string, error)
 	DeactivateProduct(productID string) error
 	CreateCustomer(name, email, localUserID string) (string, error)
 	UpdateCustomer(customerID, name, email string) error
@@ -49,6 +50,10 @@ type FinancialRepository interface {
 	GetTransactionsByUserIDAndProductID(userID, productID string) ([]entities.Transactions, error)
 	GetAllTransactions() ([]entities.Transactions, error)
 	GetTransactionsByProductID(productID string) ([]entities.Transactions, error)
+
+	// Transaction Items
+	CreateTransactionItems(items []entities.TransactionItem) error
+	UpdateTransactionItems(items []entities.TransactionItem) error
 
 	// Invoices
 	CreateInvoice(invoice *entities.Invoices) error

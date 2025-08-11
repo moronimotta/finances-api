@@ -34,6 +34,7 @@ func (r *stripeChargeRepository) GetCharge(chargeID string) (entities.Transactio
 	if ch.Refunded {
 		output.Status = "refunded"
 	}
+	output.Meta = ch.Metadata
 	output.ReceiptURL = ch.ReceiptURL
 	return output, nil
 }

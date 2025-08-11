@@ -2,7 +2,6 @@ package usecases
 
 import (
 	"finances-api/db"
-	"finances-api/entities"
 	"finances-api/repositories"
 	postgresRepository "finances-api/repositories/db/postgres"
 )
@@ -18,8 +17,4 @@ func NewDbUsecase(db db.Database) *DbUsecase {
 	return &DbUsecase{
 		repository,
 	}
-}
-
-func (d *DbUsecase) CreateGateway(gateway entities.Gateway) error {
-	return d.FinancialRepository.CreateGateway(gateway)
 }

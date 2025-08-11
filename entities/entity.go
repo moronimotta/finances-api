@@ -24,10 +24,11 @@ type Products struct {
 }
 
 type Checkout struct {
-	CustomerID  string   `json:"customer_id"`
-	PriceID     []string `json:"price_id"`
-	SessionID   string   `json:"session_id"`
-	GatewayName string   `json:"gateway_name"`
+	CustomerID  string    `json:"customer_id"`
+	PriceID     []string  `json:"price_id"`
+	SessionID   string    `json:"session_id"`
+	GatewayName string    `json:"gateway_name"`
+	Meta        meta.Meta `json:"meta"`
 }
 
 type UserProducts struct {
@@ -55,26 +56,38 @@ type Invoices struct {
 }
 
 type Transactions struct {
-	ID                string `json:"id"`
-	UserID            string `json:"user_id"`
-	UserExternalID    string `json:"user_external_id"`
-	ProductID         string `json:"product_id"`
-	ProductExternalID string `json:"product_external_id"`
-	AmountPayed       int64  `json:"amount_paid"`
-	AmountTotal       int64  `json:"amount_total"`
-	AmountRefunded    int64  `json:"amount_refunded"`
-	Status            string `json:"status"`          // paid, pending, failed, refunded
-	Type              string `json:"type"`            // product, subscription
-	PaymentMethod     string `json:"payment_method"`  // card, bank_transfer
-	PaymentDetails    string `json:"payment_details"` // cardbrand...
-	ReceiptURL        string `json:"receipt_url"`
-	ExternalID        string `json:"external_id"` // e.g Stripe will be charge_id
-	Currency          string `json:"currency"`
+	ID             string            `json:"id"`
+	UserExternalID string            `json:"user_external_id"`
+	Items          []TransactionItem `json:"items" gorm:"foreignKey:TransactionID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
+	AmountPayed    int64             `json:"amount_paid"`
+	AmountTotal    int64             `json:"amount_total"`
+	AmountRefunded int64             `json:"amount_refunded"`
+	Status         string            `json:"status"`          // paid, pending, failed, refunded
+	Type           string            `json:"type"`            // product, subscription
+	PaymentMethod  string            `json:"payment_method"`  // card, bank_transfer
+	PaymentDetails string            `json:"payment_details"` // cardbrand...
+	ReceiptURL     string            `json:"receipt_url"`
+	ExternalID     string            `json:"external_id"` // e.g Stripe will be charge_id
+	Currency       string            `json:"currency"`
+	Meta           meta.Meta         `json:"meta"`
 
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
 	DeletedAt string `json:"deleted_at"`
 	// InvoiceID      string `json:"invoice_id"` // only for subscriptions
+}
+
+type TransactionItem struct {
+	ID                string `json:"id"`
+	TransactionID     string `json:"transaction_id" gorm:"index;not null"`
+	ProductExternalID string `json:"product_external_id"`
+	Quantity          int64  `json:"quantity"`
+	UnitAmount        int64  `json:"unit_amount"`
+	Currency          string `json:"currency"`
+
+	CreatedAt string `json:"created_at"`
+	UpdatedAt string `json:"updated_at"`
+	DeletedAt string `json:"deleted_at"`
 }
 
 type Gateway struct {
@@ -125,5 +138,12 @@ func (t *Transactions) BeforeCreate(tx *gorm.DB) error {
 	t.ID = uuid.New().String()
 	t.CreatedAt = time.Now().Format("2006-01-02 15:04:05")
 	t.UpdatedAt = time.Now().Format("2006-01-02 15:04:05")
+	return nil
+}
+
+func (ti *TransactionItem) BeforeCreate(tx *gorm.DB) error {
+	ti.ID = uuid.New().String()
+	ti.CreatedAt = time.Now().Format("2006-01-02 15:04:05")
+	ti.UpdatedAt = time.Now().Format("2006-01-02 15:04:05")
 	return nil
 }

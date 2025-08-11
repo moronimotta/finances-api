@@ -21,7 +21,9 @@ func Connect() (Database, error) {
 		&entities.Invoices{},
 		&entities.Products{},
 		&entities.UserProducts{},
-		&entities.Transactions{}); err != nil {
+		&entities.Transactions{},
+		&entities.TransactionItem{},
+	); err != nil {
 		log.Fatalf("Error migrating database: %v", err)
 	}
 

@@ -13,6 +13,9 @@ type PgTransactions interface {
 	GetTransactionsByUserIDAndProductID(userID, productID string) ([]entities.Transactions, error)
 	GetAllTransactions() ([]entities.Transactions, error)
 	GetTransactionsByProductID(productID string) ([]entities.Transactions, error)
+
+	CreateTransactionItems(items []entities.TransactionItem) error
+	UpdateTransactionItems(items []entities.TransactionItem) error
 }
 
 type pgTransactionsRepository struct {
@@ -33,7 +36,7 @@ func (r *pgTransactionsRepository) CreateTransaction(transaction *entities.Trans
 }
 func (r *pgTransactionsRepository) GetTransactionByID(id string) (*entities.Transactions, error) {
 	transaction := &entities.Transactions{}
-	if err := r.db.GetDB().Where("id = ?", id).First(transaction).Error; err != nil {
+	if err := r.db.GetDB().Preload("Items").Where("id = ?", id).First(transaction).Error; err != nil {
 		return nil, err
 	}
 	return transaction, nil
@@ -52,7 +55,7 @@ func (r *pgTransactionsRepository) DeleteTransaction(id string) error {
 }
 func (r *pgTransactionsRepository) GetTransactionsByUserIDAndProductID(userID, productID string) ([]entities.Transactions, error) {
 	transactions := []entities.Transactions{}
-	if err := r.db.GetDB().Where("user_id = ? AND product_id = ?", userID, productID).Find(&transactions).Error; err != nil {
+	if err := r.db.GetDB().Preload("Items").Where("user_id = ? AND product_id = ?", userID, productID).Find(&transactions).Error; err != nil {
 		return nil, err
 	}
 	return transactions, nil
@@ -60,15 +63,45 @@ func (r *pgTransactionsRepository) GetTransactionsByUserIDAndProductID(userID, p
 
 func (r *pgTransactionsRepository) GetAllTransactions() ([]entities.Transactions, error) {
 	transactions := []entities.Transactions{}
-	if err := r.db.GetDB().Find(&transactions).Error; err != nil {
+	if err := r.db.GetDB().Preload("Items").Find(&transactions).Error; err != nil {
 		return nil, err
 	}
 	return transactions, nil
 }
 func (r *pgTransactionsRepository) GetTransactionsByProductID(productID string) ([]entities.Transactions, error) {
 	transactions := []entities.Transactions{}
-	if err := r.db.GetDB().Where("product_id = ?", productID).Find(&transactions).Error; err != nil {
+	if err := r.db.GetDB().Preload("Items").Where("product_id = ?", productID).Find(&transactions).Error; err != nil {
 		return nil, err
 	}
 	return transactions, nil
+}
+
+func (r *pgTransactionsRepository) CreateTransactionItems(items []entities.TransactionItem) error {
+	if len(items) == 0 {
+		return nil
+	}
+	if err := r.db.GetDB().Create(&items).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *pgTransactionsRepository) UpdateTransactionItems(items []entities.TransactionItem) error {
+	if len(items) == 0 {
+		return nil
+	}
+	tx := r.db.GetDB().Begin()
+	if tx.Error != nil {
+		return tx.Error
+	}
+	for _, it := range items {
+		if err := tx.Model(&entities.TransactionItem{}).Where("id = ?", it.ID).Updates(it).Error; err != nil {
+			tx.Rollback()
+			return err
+		}
+	}
+	if err := tx.Commit().Error; err != nil {
+		return err
+	}
+	return nil
 }
