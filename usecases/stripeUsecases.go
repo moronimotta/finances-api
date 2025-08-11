@@ -56,8 +56,6 @@ func (s *StripeUsecase) EventBus(payload []byte, signature string) error {
 			return err
 		}
 
-		// TODO: send a message to rabbitmq to akademia api to create user progress or append with the new course!!!
-
 	case "customer.subscription.created":
 		var subscription stripe.Subscription
 		err := json.Unmarshal(event.Data.Raw, &subscription)
