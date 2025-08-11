@@ -5,6 +5,7 @@ import (
 	"finances-api/handlers"
 	"finances-api/usecases"
 	"log"
+	"log/slog"
 	"os"
 
 	messageWorker "github.com/moronimotta/message-worker-module"
@@ -54,12 +55,12 @@ func (s *RabbitMQServer) Start() {
 			var event messageWorker.Event
 			err := event.Unmarshal(msg.Body)
 			if err != nil {
-				log.Printf("Failed to unmarshal message: %v", err)
+				slog.Error("Failed to unmarshal message", err)
 				return
 			}
 			err = rabbitMqHandler.EventBus(event)
 			if err != nil {
-				log.Printf("EventBus error: %v", err)
+				slog.Error("Error processing event", err)
 			}
 		},
 	)

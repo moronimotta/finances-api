@@ -11,12 +11,6 @@ type GatewayUsecase struct {
 	Repository repositories.GatewayRepository
 }
 
-// func NewGatewayUsecase(repository repositories.GatewayRepository) *GatewayUsecase {
-// 	return &GatewayUsecase{
-// 		Repository: repository,
-// 	}
-// }
-
 func NewGatewayUsecase(gatewayName string) *GatewayUsecase {
 	var repository repositories.GatewayRepository
 

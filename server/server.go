@@ -6,6 +6,7 @@ import (
 	"finances-api/usecases"
 	logs "finances-api/utils/logs"
 	"io/ioutil"
+	"log/slog"
 	"net/http"
 
 	"finances-api/db"
@@ -58,15 +59,18 @@ func (s *Server) initializePaymentHttpHandler() {
 	s.app.POST("/checkout", func(ctx *gin.Context) {
 		checkout := entities.Checkout{}
 		if err := ctx.ShouldBindJSON(&checkout); err != nil {
+			slog.Error("Error binding JSON for checkout", err)
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
 			return
 		}
 
 		checkoutURL, err := s.usecases.Gateway.CreateCheckoutSession(checkout.PriceID, checkout.CustomerID, checkout.Meta)
 		if err != nil {
+			slog.Error("Error creating checkout session", err)
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Error creating checkout session"})
 			return
 		}
+		slog.Info("Checkout session created successfully", nil)
 		ctx.JSON(http.StatusOK, gin.H{"client_secret": checkoutURL})
 	})
 
@@ -76,6 +80,7 @@ func (s *Server) initializePaymentHttpHandler() {
 		// calls the webhookhandler
 		stripeHandler, err := handlers.NewWebhookHandler("stripe", s.usecases)
 		if err != nil {
+			slog.Error("Error creating webhook handler", err)
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid gateway"})
 			return
 		}
@@ -83,15 +88,18 @@ func (s *Server) initializePaymentHttpHandler() {
 		ctx.Request.Body = http.MaxBytesReader(ctx.Writer, ctx.Request.Body, MaxBodyBytes)
 		payload, err := ioutil.ReadAll(ctx.Request.Body)
 		if err != nil {
+			slog.Error("Error reading request body", err)
 			ctx.JSON(http.StatusServiceUnavailable, gin.H{"error": "Error reading request body"})
 			return
 		}
 
 		if err := stripeHandler.EventBus(payload, ctx.Request.Header.Get("Stripe-Signature")); err != nil {
+			slog.Error("Error processing webhook event", err)
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
 
+		slog.Info("Webhook event processed successfully", nil)
 		ctx.JSON(http.StatusOK, gin.H{"status": "success"})
 	})
 

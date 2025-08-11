@@ -50,7 +50,6 @@ func (s *StripeUsecase) EventBus(payload []byte, signature string) error {
 		input.AmountTotal = paymentIntent.Amount
 		input.AmountPayed = paymentIntent.AmountReceived
 		input.UserExternalID = paymentIntent.Customer.ID
-		// Send via meta the local user id, product_id and product external id
 
 		if err := s.CreateTransaction(input); err != nil {
 			return err
@@ -92,7 +91,7 @@ func (s *StripeUsecase) CreateTransaction(input entities.Transactions) error {
 	input.ReceiptURL = stripeChargeInfo.ReceiptURL
 
 	err = s.DB.CreateTransaction(&input)
-	// create transaction items
+
 	if err != nil {
 		return err
 	}
@@ -115,7 +114,6 @@ func (s *StripeUsecase) CreateTransaction(input entities.Transactions) error {
 
 	s.DB.CreateTransactionItems(items)
 
-	// get the local_product_id_...
 	var localProductIDs []string
 	for key, value := range stripeChargeInfo.Meta {
 		if strings.HasPrefix(key, "local_product_id_") {
@@ -123,7 +121,6 @@ func (s *StripeUsecase) CreateTransaction(input entities.Transactions) error {
 		}
 	}
 
-	// get user id
 	var userID string
 	for key, value := range stripeChargeInfo.Meta {
 		if strings.HasPrefix(key, "user_id") {

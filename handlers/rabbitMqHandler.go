@@ -4,6 +4,7 @@ import (
 	"errors"
 	usecases "finances-api/usecases"
 	"log"
+	"log/slog"
 	"os"
 
 	messageWorker "github.com/moronimotta/message-worker-module"
@@ -43,6 +44,7 @@ func (h *RabbitMqHandler) EventBus(event messageWorker.Event) error {
 	case "user.created":
 		dataMap, ok := event.Data.(map[string]interface{})
 		if !ok {
+			slog.Error("Event data type assertion failed for event user.created")
 			return errors.New("event data is not a map[string]interface{}")
 		}
 		name := dataMap["name"].(string)
@@ -51,9 +53,10 @@ func (h *RabbitMqHandler) EventBus(event messageWorker.Event) error {
 
 		externalID, err := h.usecases.Gateway.CreateCustomer(name, email, userID)
 		if err != nil {
-			log.Printf("Error creating customer: %v", err)
+			slog.Error("Error creating customer for event user.created", err)
 		}
 		if externalID == "" {
+			slog.Error("External ID is empty for event user.created")
 			return errors.New("external ID is empty")
 		}
 
@@ -69,6 +72,7 @@ func (h *RabbitMqHandler) EventBus(event messageWorker.Event) error {
 	case "user.updated":
 		dataMap, ok := event.Data.(map[string]interface{})
 		if !ok {
+			slog.Error("Event data type assertion failed for event user.updated")
 			return errors.New("event data is not a map[string]interface{}")
 		}
 		var name, email string
@@ -80,6 +84,7 @@ func (h *RabbitMqHandler) EventBus(event messageWorker.Event) error {
 		}
 		externalID := dataMap["external_id"].(string)
 		if err := h.usecases.Gateway.UpdateCustomer(externalID, name, email); err != nil {
+			slog.Error("Error updating customer for event user.updated", err)
 			log.Printf("Error updating customer: %v", err)
 		}
 	default:
