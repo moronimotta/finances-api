@@ -44,8 +44,11 @@ func (s *Server) Start() {
 	s.initializePaymentHttpHandler()
 
 	if err := s.app.Run(":9090"); err != nil {
+
+		slog.Error("Error starting Payment API Server", "error", err)
 		panic(err)
 	}
+	slog.Info("Payment API Server started", nil)
 }
 
 func (s *Server) initializePaymentHttpHandler() {

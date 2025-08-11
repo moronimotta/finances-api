@@ -5,6 +5,7 @@ import (
 	"finances-api/db"
 	"finances-api/server"
 	"log"
+	"log/slog"
 	"time"
 )
 
@@ -28,11 +29,11 @@ func main() {
 	go func() {
 		defer func() {
 			if r := recover(); r != nil {
-				log.Printf("Recovered from panic: %v", r)
+				slog.Error("Recovered from panic", "error", r)
 			}
 		}()
 		time.Sleep(5 * time.Second)
-		log.Println("Starting RabbitMQ server...")
+		slog.Info("Starting RabbitMQ server...")
 		rabbitServer := server.NewRabbitMQServer(db, redisClient)
 		rabbitServer.Start()
 	}()
