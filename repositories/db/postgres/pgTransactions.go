@@ -8,6 +8,7 @@ import (
 type PgTransactions interface {
 	CreateTransaction(transaction *entities.Transactions) error
 	GetTransactionByID(id string) (*entities.Transactions, error)
+	GetTransactionByExternalID(externalID string) (*entities.Transactions, error)
 	UpdateTransaction(transaction *entities.Transactions) error
 	DeleteTransaction(id string) error
 	GetTransactionsByUserIDAndProductID(userID, productID string) ([]entities.Transactions, error)
@@ -37,6 +38,14 @@ func (r *pgTransactionsRepository) CreateTransaction(transaction *entities.Trans
 func (r *pgTransactionsRepository) GetTransactionByID(id string) (*entities.Transactions, error) {
 	transaction := &entities.Transactions{}
 	if err := r.db.GetDB().Preload("Items").Where("id = ?", id).First(transaction).Error; err != nil {
+		return nil, err
+	}
+	return transaction, nil
+}
+
+func (r *pgTransactionsRepository) GetTransactionByExternalID(externalID string) (*entities.Transactions, error) {
+	transaction := &entities.Transactions{}
+	if err := r.db.GetDB().Preload("Items").Where("external_id = ?", externalID).First(transaction).Error; err != nil {
 		return nil, err
 	}
 	return transaction, nil

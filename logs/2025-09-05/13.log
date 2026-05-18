@@ -1,0 +1,48 @@
+time=2025-09-05T13:31:54.500-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-09-05T13:31:54.500-03:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2025-09-05T13:31:54.562-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-09-05T13:32:06.587-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-09-05T13:32:06.587-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=658.1676ms
+time=2025-09-05T14:58:58.110-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T14:59:01.042-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=2.9266279s
+time=2025-09-05T14:59:59.450-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T15:00:00.361-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=899.2345ms
+time=2025-09-05T15:03:29.808-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T15:03:30.813-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=1.0020577s
+time=2025-09-05T15:03:41.608-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T15:03:42.512-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=898.2448ms
+time=2025-09-05T15:04:08.614-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T15:04:09.520-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=889.2157ms
+time=2025-09-05T15:44:36.736-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T15:44:39.539-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=2.7984548s
+time=2025-09-05T15:46:00.428-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T15:46:00.452-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T15:46:01.288-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=857.8821ms
+time=2025-09-05T15:46:03.248-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=2.7927691s
+time=2025-09-05T15:52:10.309-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T15:52:13.549-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=3.2367038s
+time=2025-09-05T15:52:36.610-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T15:52:37.456-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=843.6178ms
+time=2025-09-05T15:54:34.390-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-09-05T15:54:34.813-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-09-05T15:54:34.814-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=419.2143ms
+time=2025-09-05T15:54:41.464-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T15:54:42.323-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=855.3845ms
+time=2025-09-05T16:00:52.265-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-09-05T16:00:52.265-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.7409255s
+time=2025-09-05T16:01:27.232-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-09-05T16:01:27.233-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=424.0084ms
+time=2025-09-05T16:01:39.458-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-09-05T16:01:39.458-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=422.7538ms
+time=2025-09-05T16:02:11.815-03:00 level=INFO msg="Received a message: {\"event\":\"user.created\",\"data\":{\"email\":\"\",\"name\":\"\",\"user_id\":\"dda1872a-27b5-4670-b2fa-1d4d5d903e78\"}}"
+time=2025-09-05T16:02:12.724-03:00 level=INFO msg="message sent: {\"event\":\"user.updated\",\"data\":{\"external_id\":\"cus_T053r4RGyr3HzA\",\"id\":\"dda1872a-27b5-4670-b2fa-1d4d5d903e78\"}}"
+time=2025-09-05T16:02:12.759-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-09-05T16:02:12.760-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-09-05T16:02:12.760-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1.0899ms
+time=2025-09-05T17:59:24.594-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T17:59:27.383-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=2.7822627s
+time=2025-09-05T18:44:22.050-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T18:44:25.412-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=3.3515632s
+time=2025-09-05T21:02:10.610-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-05T21:02:13.460-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=2.8437361s
+time=2025-09-05T21:26:12.848-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=2.8734622s

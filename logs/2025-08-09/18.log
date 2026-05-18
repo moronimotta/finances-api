@@ -1,0 +1,19 @@
+time=2025-08-09T18:36:20.491-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-09T18:36:20.559-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-09T18:36:36.870-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-09T18:36:51.413-03:00 level=INFO msg=Request method=GET path=/webhook/stripe status=404 duration=0s
+time=2025-08-09T18:36:51.657-03:00 level=INFO msg=Request method=GET path=/favicon.ico status=404 duration=0s
+time=2025-08-09T18:37:52.284-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=28.3231807s
+time=2025-08-09T18:38:38.988-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=15.8842974s
+time=2025-08-09T18:38:46.495-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-09T18:39:29.836-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=19.5605788s
+time=2025-08-09T18:52:18.655-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-09T18:52:18.712-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-09T18:52:43.430-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=6.0119698s
+time=2025-08-09T18:54:16.699-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-09T18:54:16.702-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-09T18:54:17.365-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=660.2127ms
+time=2025-08-09T18:54:17.585-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=218.5055ms
+time=2025-08-09T18:55:25.870-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-09T18:55:25.942-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-09T18:55:34.138-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=400 duration=3.610792s

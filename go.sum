@@ -76,6 +76,12 @@ github.com/modern-go/reflect2 v1.0.2 h1:xBagoLtFs94CBntxluKeaWgTMpvLxC4ur3nMaC9G
 github.com/modern-go/reflect2 v1.0.2/go.mod h1:yWuevngMOJpCy52FWWMvUC8ws7m/LJsjYzDa0/r8luk=
 github.com/moronimotta/message-worker-module v0.0.0-20250524212518-58870907c7c9 h1:UHIduaLhGcr3nVRWfyratXaLE1z9362OWwxdGQqxJg8=
 github.com/moronimotta/message-worker-module v0.0.0-20250524212518-58870907c7c9/go.mod h1:acNbAXNYeOT/fzi8KLk7Zwf6mggDe//fCV7gtQcFwCI=
+github.com/moronimotta/message-worker-module v0.0.0-20250812163934-6509f11929f3 h1:fEsGaJBpdIrJJ2JJn9WFX1c5zcP+JdFNpq70EUgzIBg=
+github.com/moronimotta/message-worker-module v0.0.0-20250812163934-6509f11929f3/go.mod h1:acNbAXNYeOT/fzi8KLk7Zwf6mggDe//fCV7gtQcFwCI=
+github.com/moronimotta/message-worker-module v0.0.0-20250812165611-c47f747a7079 h1:uW2t7Uq7VhKlcrJH90hloz/pktUYkzsTA1jc435WWho=
+github.com/moronimotta/message-worker-module v0.0.0-20250812165611-c47f747a7079/go.mod h1:acNbAXNYeOT/fzi8KLk7Zwf6mggDe//fCV7gtQcFwCI=
+github.com/moronimotta/message-worker-module v0.0.0-20250812170213-9351a4bbaeec h1:gwtjS6Qaina4WrFPkyspAUZfjHDIZpkqaQpt86eUj4M=
+github.com/moronimotta/message-worker-module v0.0.0-20250812170213-9351a4bbaeec/go.mod h1:acNbAXNYeOT/fzi8KLk7Zwf6mggDe//fCV7gtQcFwCI=
 github.com/pelletier/go-toml/v2 v2.2.4 h1:mye9XuhQ6gvn5h28+VilKrrPoQVanw5PMw/TB0t5Ec4=
 github.com/pelletier/go-toml/v2 v2.2.4/go.mod h1:2gIqNv+qfxSVS7cM2xJQKtLSTLUE9V8t9Stt+h56mCY=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

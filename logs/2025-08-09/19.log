@@ -1,0 +1,12 @@
+time=2025-08-09T19:06:14.394-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-09T19:06:14.452-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-09T19:06:29.176-03:00 level=INFO msg="Error verifying webhook signature: webhook had no valid signature"
+time=2025-08-09T19:06:40.024-03:00 level=INFO msg="Unhandled ev1ent type: "
+time=2025-08-09T19:06:40.025-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=23.5853443s
+time=2025-08-09T19:09:02.699-03:00 level=INFO msg="Error verifying webhook signature: webhook had no valid signature"
+time=2025-08-09T19:09:03.874-03:00 level=INFO msg="Unhandled ev1ent type: "
+time=2025-08-09T19:09:03.874-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1m41.6475649s
+time=2025-08-09T19:11:20.769-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-09T19:11:20.827-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-09T19:13:40.104-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-08-09T19:13:51.963-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=2m27.577064s

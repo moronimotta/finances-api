@@ -1,0 +1,86 @@
+time=2025-08-04T13:08:11.712-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-04T13:08:11.779-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-04T13:10:03.996-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=659.8703ms
+time=2025-08-04T13:11:17.468-03:00 level=INFO msg=Request method=PUT path=/products/86a7d6ab-bcbe-4bf0-bf7f-e3a55bfc7eeb status=400 duration=0s
+time=2025-08-04T13:11:21.706-03:00 level=INFO msg=Request method=PUT path=/products/86a7d6ab-bcbe-4bf0-bf7f-e3a55bfc7eeb status=400 duration=0s
+time=2025-08-04T13:11:52.347-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T13:11:52.585-03:00 level=INFO msg=Request method=PUT path=/products/86a7d6ab-bcbe-4bf0-bf7f-e3a55bfc7eeb status=400 duration=1.1436967s
+time=2025-08-04T13:11:52.785-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T13:13:23.524-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-04T13:13:23.585-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-04T13:14:18.424-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T13:14:18.766-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=504.2µs
+time=2025-08-04T13:14:20.015-03:00 level=INFO msg=Request method=POST path=/products status=200 duration=2.4873367s
+time=2025-08-04T13:14:20.114-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T13:14:24.891-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=602.9221ms
+time=2025-08-04T13:14:31.706-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=400.722ms
+time=2025-08-04T13:15:54.328-03:00 level=INFO msg=Request method=PUT path=/products/a80a2330-720b-4139-b9fa-a72ddf773dee status=400 duration=0s
+time=2025-08-04T13:16:50.856-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-04T13:16:50.927-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-04T13:16:53.078-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T13:16:53.429-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T13:16:55.256-03:00 level=INFO msg=Request method=PUT path=/products/a80a2330-720b-4139-b9fa-a72ddf773dee status=200 duration=3.0586532s
+time=2025-08-04T13:16:55.396-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T13:19:55.402-03:00 level=INFO msg=Request method=POST path=/checkout status=400 duration=675.1417ms
+time=2025-08-04T13:20:15.829-03:00 level=INFO msg=Request method=POST path=/checkout status=400 duration=327.3795ms
+time=2025-08-04T13:49:55.143-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-04T13:49:55.203-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-04T13:54:41.412-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-04T13:54:41.472-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-04T14:12:04.883-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T14:12:05.828-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T14:12:06.148-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T14:12:08.988-03:00 level=INFO msg=Request method=POST path=/products status=200 duration=4.1035758s
+time=2025-08-04T14:12:09.086-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T14:14:39.752-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T14:14:40.098-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T14:14:41.157-03:00 level=INFO msg=Request method=POST path=/products status=200 duration=2.2366228s
+time=2025-08-04T14:14:41.263-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T14:15:18.140-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T14:15:18.478-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T14:15:19.540-03:00 level=INFO msg=Request method=POST path=/products status=200 duration=1.9548992s
+time=2025-08-04T14:15:19.662-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T14:17:32.889-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T14:17:33.241-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T14:17:34.309-03:00 level=INFO msg=Request method=POST path=/products status=200 duration=2.2058825s
+time=2025-08-04T14:17:34.421-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-04T14:32:27.653-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T14:32:29.314-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.6580791s
+time=2025-08-04T14:36:35.307-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T14:36:35.713-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=404.7582ms
+time=2025-08-04T14:36:40.507-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T14:36:40.925-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=413.3247ms
+time=2025-08-04T14:39:33.993-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T14:39:34.408-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=411.6207ms
+time=2025-08-04T14:43:33.154-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T14:43:33.580-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=420.7946ms
+time=2025-08-04T14:43:55.008-03:00 level=INFO msg=Request method=POST path=/checkout status=400 duration=726.5302ms
+time=2025-08-04T14:43:59.653-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T14:43:59.657-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T14:44:00.068-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=409.6184ms
+time=2025-08-04T14:44:01.496-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.8360429s
+time=2025-08-04T20:16:48.423-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T20:17:22.226-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T20:18:15.060-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1m26.6298334s
+time=2025-08-04T20:18:22.445-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1m25.9928423s
+time=2025-08-04T20:18:48.231-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1m26.0005035s
+time=2025-08-04T20:21:00.718-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T20:21:01.191-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=465.4515ms
+time=2025-08-04T20:27:04.524-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T20:27:06.758-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=2.2292022s
+time=2025-08-04T20:30:51.380-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T20:30:51.382-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T20:30:51.827-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=439.6011ms
+time=2025-08-04T20:30:53.090-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.700754s
+time=2025-08-04T20:44:58.467-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T20:44:58.472-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T20:45:00.578-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=2.1037844s
+time=2025-08-04T20:45:00.853-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=2.374606s
+time=2025-08-04T21:05:20.837-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T21:05:21.681-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T21:05:22.640-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.7991587s
+time=2025-08-04T21:05:23.394-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.6996384s
+time=2025-08-04T21:07:14.501-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T21:07:14.945-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=439.6531ms
+time=2025-08-04T21:07:15.139-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T21:07:15.358-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=214.348ms

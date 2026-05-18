@@ -55,6 +55,8 @@ func (s *StripeUsecase) EventBus(payload []byte, signature string) error {
 			return err
 		}
 
+		// TODO: Send a CRM communication
+
 	case "customer.subscription.created":
 		var subscription stripe.Subscription
 		err := json.Unmarshal(event.Data.Raw, &subscription)
@@ -77,6 +79,13 @@ func (s *StripeUsecase) EventBus(payload []byte, signature string) error {
 }
 
 func (s *StripeUsecase) CreateTransaction(input entities.Transactions) error {
+	// Check if transaction already exists (idempotency check)
+	existingTx, err := s.DB.GetTransactionByExternalID(input.ExternalID)
+	if err == nil && existingTx != nil {
+		log.Printf("Transaction with external_id %s already exists, skipping duplicate creation", input.ExternalID)
+		return nil // Idempotent - transaction already processed
+	}
+
 	stripeChargeInfo, err := s.Repository.GetCharge(input.ExternalID)
 	if err != nil {
 		return err

@@ -7,6 +7,9 @@ import (
 	"github.com/stripe/stripe-go/v82/price"
 )
 
+// TODO: Figure it out how to make customers set an specific amount to pay
+// even if the subscription is for 3 months, the customer can pay for everything in the first month.
+
 type StripePrice interface {
 	CreatePrice(productID string, unitAmount int64, currency string) (string, error)
 	ChangePrice(oldPriceID, productID string, unitAmount int64, currency string) (string, error)

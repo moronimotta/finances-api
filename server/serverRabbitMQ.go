@@ -5,11 +5,9 @@ import (
 	"finances-api/handlers"
 	"finances-api/usecases"
 	"log"
-	"log/slog"
 	"os"
 
 	messageWorker "github.com/moronimotta/message-worker-module"
-	amqp "github.com/rabbitmq/amqp091-go"
 	"github.com/redis/go-redis/v9"
 )
 
@@ -51,17 +49,8 @@ func (s *RabbitMQServer) Start() {
 	log.Println("Starting RabbitMQ consumer...")
 
 	messageWorker.Listen(consumerInput,
-		func(msg amqp.Delivery) {
-			var event messageWorker.Event
-			err := event.Unmarshal(msg.Body)
-			if err != nil {
-				slog.Error("Failed to unmarshal message", err)
-				return
-			}
-			err = rabbitMqHandler.EventBus(event)
-			if err != nil {
-				slog.Error("Error processing event", err)
-			}
+		func(event messageWorker.Event) error {
+			return rabbitMqHandler.EventBus(event)
 		},
 	)
 

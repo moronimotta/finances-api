@@ -1,0 +1,136 @@
+time=2025-08-11T13:06:30.918-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-11T13:06:30.918-03:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2025-08-11T13:06:30.982-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-11T13:08:05.398-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-11T13:08:05.398-03:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2025-08-11T13:08:05.467-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-11T13:26:19.172-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-11T13:26:19.172-03:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2025-08-11T13:26:19.227-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-11T14:39:57.326-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T14:39:57.332-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T14:39:59.058-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T14:39:59.059-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.7242374s
+time=2025-08-11T14:39:59.124-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T14:39:59.124-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.7872009s
+time=2025-08-11T14:40:09.948-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T14:40:09.956-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T14:40:10.409-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T14:40:10.410-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=457.3114ms
+time=2025-08-11T14:40:11.106-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T14:40:11.106-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.1432683s
+time=2025-08-11T14:40:53.876-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T14:40:53.881-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T14:40:54.316-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T14:40:54.316-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=434.0669ms
+time=2025-08-11T14:40:54.332-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T14:40:54.333-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=448.912ms
+time=2025-08-11T14:57:46.312-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T14:57:46.314-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T14:57:48.095-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T14:57:48.095-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.7771787s
+time=2025-08-11T14:57:48.108-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T14:57:48.108-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.7911416s
+time=2025-08-11T15:06:45.716-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:06:45.721-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:06:46.056-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:06:46.145-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T15:06:46.146-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=420.7211ms
+time=2025-08-11T15:06:46.181-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T15:06:46.181-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=455.8864ms
+time=2025-08-11T15:06:47.841-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T15:06:47.841-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.7832051s
+time=2025-08-11T15:06:48.458-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:06:48.458-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:06:48.894-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T15:06:48.894-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=431.8976ms
+time=2025-08-11T15:06:48.936-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T15:06:48.936-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=473.7686ms
+time=2025-08-11T15:07:29.769-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:07:29.771-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:07:30.196-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T15:07:30.196-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=422.0054ms
+time=2025-08-11T15:07:30.226-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T15:07:30.227-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=454.1966ms
+time=2025-08-11T15:12:01.431-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:12:01.440-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=999.8µs
+time=2025-08-11T15:12:01.885-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T15:12:01.885-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=441.8998ms
+time=2025-08-11T15:12:01.898-03:00 level=INFO msg="Retrieved all products" count=9
+time=2025-08-11T15:12:01.898-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=461.4885ms
+time=2025-08-11T15:12:46.980-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:12:47.930-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-08-11T15:12:47.930-03:00 level=INFO msg="Unhandled ev1ent type: product.created"
+time=2025-08-11T15:12:47.930-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-08-11T15:12:47.930-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-11T15:12:48.317-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-08-11T15:12:48.317-03:00 level=INFO msg="Unhandled ev1ent type: price.created"
+time=2025-08-11T15:12:48.317-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-08-11T15:12:48.317-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1.0793ms
+time=2025-08-11T15:12:49.652-03:00 level=INFO msg="Product created successfully" product_id=5c800071-8011-4b6b-aacb-78be0e926c51 external_id=prod_SqhcbPuj8OZbTw
+time=2025-08-11T15:12:49.652-03:00 level=INFO msg=Request method=POST path=/products status=200 duration=2.6713926s
+time=2025-08-11T15:12:49.760-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-08-11T15:12:49.760-03:00 level=INFO msg="Unhandled ev1ent type: product.updated"
+time=2025-08-11T15:12:49.761-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-08-11T15:12:49.761-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=522.8µs
+time=2025-08-11T15:12:56.506-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:12:56.515-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:12:56.953-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-11T15:12:56.954-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=431.8118ms
+time=2025-08-11T15:12:56.959-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-11T15:12:56.959-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=448.3394ms
+time=2025-08-11T15:13:00.717-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:13:01.169-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-11T15:13:01.169-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=449.7071ms
+time=2025-08-11T15:13:17.649-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:13:17.651-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:13:18.088-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-11T15:13:18.088-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=433.2223ms
+time=2025-08-11T15:13:18.106-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-11T15:13:18.106-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=451.1969ms
+time=2025-08-11T15:13:28.216-03:00 level=INFO msg="Checkout session created successfully" !BADKEY=<nil>
+time=2025-08-11T15:13:28.216-03:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=501.0695ms
+time=2025-08-11T15:13:39.868-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-08-11T15:13:39.868-03:00 level=INFO msg="Unhandled ev1ent type: charge.succeeded"
+time=2025-08-11T15:13:39.868-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-08-11T15:13:39.869-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1.2258ms
+time=2025-08-11T15:13:39.961-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-08-11T15:13:40.008-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-08-11T15:13:40.008-03:00 level=INFO msg="Unhandled ev1ent type: payment_intent.created"
+time=2025-08-11T15:13:40.008-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-08-11T15:13:40.008-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=529.8µs
+time=2025-08-11T15:13:40.142-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-08-11T15:13:40.142-03:00 level=INFO msg="Unhandled ev1ent type: checkout.session.completed"
+time=2025-08-11T15:13:40.142-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-08-11T15:13:40.142-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=574.1µs
+time=2025-08-11T15:13:42.267-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-08-11T15:13:42.267-03:00 level=INFO msg="Unhandled ev1ent type: charge.updated"
+time=2025-08-11T15:13:42.267-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-08-11T15:13:42.267-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=560.9µs
+time=2025-08-11T15:13:42.964-03:00 level=INFO msg="message sent: {\"event\":\"user.new_course\",\"data\":{\"local_product_ids\":[\"e01949b4-63a1-4b20-8132-bacacfefa2c3\"],\"user_id\":\"72018cb1-3a9d-4c73-bbec-c2eb83b8cc6f\"}}"
+time=2025-08-11T15:13:43.012-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-08-11T15:13:43.012-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=3.0512921s
+time=2025-08-11T15:14:15.347-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:14:15.348-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:14:15.784-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-11T15:14:15.784-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=432.8323ms
+time=2025-08-11T15:14:15.805-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-11T15:14:15.805-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=453.2617ms
+time=2025-08-11T15:16:01.944-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:16:02.396-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-11T15:16:02.396-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=448.713ms
+time=2025-08-11T15:16:02.957-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:16:03.413-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-11T15:16:03.413-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=453.9391ms
+time=2025-08-11T15:24:08.730-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:24:08.730-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:24:11.065-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-11T15:24:11.065-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=2.3285169s
+time=2025-08-11T15:24:11.223-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-11T15:24:11.223-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=2.4878505s
+time=2025-08-11T15:26:52.750-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:26:53.216-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-11T15:26:53.217-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=459.9661ms
+time=2025-08-11T15:26:53.637-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-11T15:26:53.881-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-11T15:26:53.881-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=221.2575ms

@@ -1,0 +1,8 @@
+time=2025-08-10T20:36:58.312-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-10T20:36:58.380-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-10T21:02:26.956-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-10T21:02:26.957-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-10T21:02:29.367-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=2.4050391s
+time=2025-08-10T21:02:29.784-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=415.7201ms
+time=2025-08-10T21:02:43.708-03:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=946.7594ms
+time=2025-08-10T21:02:51.181-03:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=483.1849ms

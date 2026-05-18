@@ -1,0 +1,16 @@
+time=2025-08-04T21:19:27.201-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-04T21:19:49.492-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-04T21:19:49.492-03:00 level=INFO msg="Received a message: {\"event\":\"user.created\",\"data\":{\"email\":\"ejoinvillenorte@gmail.com\",\"name\":\"Moroni Arthur Motta\",\"user_id\":\"9d73ea12-0448-4aed-a14c-19d207d51441\"}}"
+time=2025-08-04T21:19:52.803-03:00 level=INFO msg="message sent: {\"event\":\"user.updated\",\"data\":{\"external_id\":\"cus_SoAxEBv8fKhTiL\",\"id\":\"9d73ea12-0448-4aed-a14c-19d207d51441\"}}"
+time=2025-08-04T21:19:52.852-03:00 level=INFO msg="Received a message: {\"event\":\"user.created\",\"data\":{\"email\":\"ejoinvillenorte2@gmail.com\",\"name\":\"Moroni Arthur Motta\",\"user_id\":\"384b4ef8-5ef5-4f42-bef9-01925475cf76\"}}"
+time=2025-08-04T21:19:54.531-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=503µs
+time=2025-08-04T21:19:54.993-03:00 level=INFO msg="message sent: {\"event\":\"user.updated\",\"data\":{\"external_id\":\"cus_SoAxZa25iJTM4h\",\"id\":\"384b4ef8-5ef5-4f42-bef9-01925475cf76\"}}"
+time=2025-08-04T21:19:55.086-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=505.5µs
+time=2025-08-04T21:22:23.714-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T21:22:23.726-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T21:22:24.376-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=653.2009ms
+time=2025-08-04T21:22:25.427-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.6991159s
+time=2025-08-04T21:25:32.238-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T21:25:32.242-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-04T21:25:32.678-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=434.7095ms
+time=2025-08-04T21:25:32.679-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=435.2847ms

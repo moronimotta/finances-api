@@ -43,12 +43,13 @@ func (r *stripeCheckoutRepository) CreateCheckoutSession(priceID []string, custo
 		Mode:               stripe.String(string(stripe.CheckoutSessionModePayment)),
 		UIMode:             stripe.String("embedded"),
 		PaymentIntentData:  paymentIntentData,
+		AutomaticTax:       &stripe.CheckoutSessionAutomaticTaxParams{Enabled: stripe.Bool(true)},
 	}
 
 	if os.Getenv("STRIPE_SUCCESS_URL") != "" {
 		params.ReturnURL = stripe.String(os.Getenv("STRIPE_SUCCESS_URL"))
 	} else {
-		params.ReturnURL = stripe.String("https://example.com/success")
+		params.ReturnURL = stripe.String("http://localhost:3000/payment/success")
 	}
 
 	result, err := session.New(params)

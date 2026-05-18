@@ -1,0 +1,120 @@
+time=2026-02-21T16:15:55.933-07:00 level=INFO msg="Starting RabbitMQ server..."
+time=2026-02-21T16:15:55.933-07:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2026-02-21T16:15:55.999-07:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2026-02-21T16:16:42.078-07:00 level=INFO msg="Retrieved all products" count=13
+time=2026-02-21T16:16:42.079-07:00 level=INFO msg=Request method=GET path=/products status=200 duration=173.795ms
+time=2026-02-21T16:18:21.772-07:00 level=INFO msg="Checkout session created successfully" !BADKEY=<nil>
+time=2026-02-21T16:18:21.772-07:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=633.3503ms
+time=2026-02-21T16:18:37.223-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T16:18:37.223-07:00 level=INFO msg="Unhandled ev1ent type: charge.succeeded"
+time=2026-02-21T16:18:37.223-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T16:18:37.223-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1.6185ms
+time=2026-02-21T16:18:37.300-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T16:18:37.340-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T16:18:37.340-07:00 level=INFO msg="Unhandled ev1ent type: payment_intent.created"
+time=2026-02-21T16:18:37.340-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T16:18:37.340-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=530.6µs
+time=2026-02-21T16:18:37.490-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T16:18:37.490-07:00 level=INFO msg="Unhandled ev1ent type: checkout.session.completed"
+time=2026-02-21T16:18:37.490-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T16:18:37.490-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=520.5µs
+time=2026-02-21T16:18:50.486-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T16:18:50.486-07:00 level=INFO msg="Unhandled ev1ent type: charge.updated"
+time=2026-02-21T16:18:50.486-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T16:18:50.486-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1.8663ms
+time=2026-02-21T16:18:50.548-07:00 level=INFO msg="message sent: {\"event\":\"user.new_course\",\"data\":{\"local_product_ids\":[\"442484ef-1035-4f4d-b9ef-2fa66834acb9\"],\"user_id\":\"794a21f9-2fd0-4b32-977a-6fb6f3072c20\"}}"
+time=2026-02-21T16:18:50.595-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T16:18:50.595-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=13.297322s
+time=2026-02-21T16:35:28.911-07:00 level=INFO msg="Checkout session created successfully" !BADKEY=<nil>
+time=2026-02-21T16:35:28.911-07:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=536.779ms
+time=2026-02-21T16:35:45.297-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T16:35:45.297-07:00 level=INFO msg="Unhandled ev1ent type: charge.succeeded"
+time=2026-02-21T16:35:45.297-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T16:35:45.297-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=520.3µs
+time=2026-02-21T16:35:45.395-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T16:35:45.487-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T16:35:45.487-07:00 level=INFO msg="Unhandled ev1ent type: payment_intent.created"
+time=2026-02-21T16:35:45.487-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T16:35:45.487-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=518.9µs
+time=2026-02-21T16:35:45.535-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T16:35:45.535-07:00 level=INFO msg="Unhandled ev1ent type: checkout.session.completed"
+time=2026-02-21T16:35:45.535-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T16:35:45.536-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=539.8µs
+time=2026-02-21T16:35:47.760-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T16:35:47.760-07:00 level=INFO msg="Unhandled ev1ent type: charge.updated"
+time=2026-02-21T16:35:47.760-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T16:35:47.760-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=534.7µs
+time=2026-02-21T16:35:47.791-07:00 level=INFO msg="message sent: {\"event\":\"user.new_course\",\"data\":{\"local_product_ids\":[\"64400c2f-5524-446e-a2bd-5541451efde2\"],\"user_id\":\"794a21f9-2fd0-4b32-977a-6fb6f3072c20\"}}"
+time=2026-02-21T16:35:47.834-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T16:35:47.834-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=2.4403736s
+time=2026-02-21T17:02:59.694-07:00 level=INFO msg="Received a message: {\"event\":\"user.created\",\"data\":{\"email\":\"moroni@gmail.com\",\"name\":\"Moroni Arthur Motta\",\"user_id\":\"e7c5d749-605a-458e-858c-09301bb2eda0\"}}"
+time=2026-02-21T17:03:00.287-07:00 level=INFO msg="message sent: {\"event\":\"user.updated\",\"data\":{\"external_id\":\"cus_U1T4urx4f29nxi\",\"id\":\"e7c5d749-605a-458e-858c-09301bb2eda0\"}}"
+time=2026-02-21T17:03:00.313-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:03:00.313-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:03:00.313-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1.0711ms
+time=2026-02-21T17:03:45.367-07:00 level=INFO msg="Checkout session created successfully" !BADKEY=<nil>
+time=2026-02-21T17:03:45.368-07:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=437.1212ms
+time=2026-02-21T17:04:04.037-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:04:04.037-07:00 level=INFO msg="Unhandled ev1ent type: charge.succeeded"
+time=2026-02-21T17:04:04.037-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:04:04.037-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=522.2µs
+time=2026-02-21T17:04:04.105-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:04:04.188-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:04:04.188-07:00 level=INFO msg="Unhandled ev1ent type: payment_intent.created"
+time=2026-02-21T17:04:04.188-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:04:04.188-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=603.7µs
+time=2026-02-21T17:04:04.315-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:04:04.315-07:00 level=INFO msg="Unhandled ev1ent type: checkout.session.completed"
+time=2026-02-21T17:04:04.315-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:04:04.315-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=560µs
+time=2026-02-21T17:04:05.518-07:00 level=INFO msg="message sent: {\"event\":\"user.new_course\",\"data\":{\"local_product_ids\":[\"df9cc567-aa7f-4090-975e-f46d8cf9f2b8\",\"22e2fb62-3348-41a7-913b-fa76f0123bf9\"],\"user_id\":\"e7c5d749-605a-458e-858c-09301bb2eda0\"}}"
+time=2026-02-21T17:04:05.562-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:04:05.562-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1.4569981s
+time=2026-02-21T17:04:07.354-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:04:07.354-07:00 level=INFO msg="Unhandled ev1ent type: charge.updated"
+time=2026-02-21T17:04:07.354-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:04:07.354-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=551.4µs
+time=2026-02-21T17:10:05.014-07:00 level=INFO msg="Checkout session created successfully" !BADKEY=<nil>
+time=2026-02-21T17:10:05.015-07:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=643.9241ms
+time=2026-02-21T17:10:19.275-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:10:19.275-07:00 level=INFO msg="Unhandled ev1ent type: charge.succeeded"
+time=2026-02-21T17:10:19.275-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:10:19.275-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1.0964ms
+time=2026-02-21T17:10:19.302-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:10:19.368-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:10:19.368-07:00 level=INFO msg="Unhandled ev1ent type: payment_intent.created"
+time=2026-02-21T17:10:19.368-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:10:19.368-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=534.2µs
+time=2026-02-21T17:10:19.430-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:10:19.430-07:00 level=INFO msg="Unhandled ev1ent type: checkout.session.completed"
+time=2026-02-21T17:10:19.430-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:10:19.430-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1.0893ms
+time=2026-02-21T17:10:20.168-07:00 level=INFO msg="message sent: {\"event\":\"user.new_course\",\"data\":{\"local_product_ids\":[\"442484ef-1035-4f4d-b9ef-2fa66834acb9\"],\"user_id\":\"e7c5d749-605a-458e-858c-09301bb2eda0\"}}"
+time=2026-02-21T17:10:20.216-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:10:20.217-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=913.7452ms
+time=2026-02-21T17:10:21.704-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:10:21.704-07:00 level=INFO msg="Unhandled ev1ent type: charge.updated"
+time=2026-02-21T17:10:21.704-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:10:21.704-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1.2212ms
+time=2026-02-21T17:11:12.977-07:00 level=INFO msg="Checkout session created successfully" !BADKEY=<nil>
+time=2026-02-21T17:11:12.977-07:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=394.2423ms
+time=2026-02-21T17:11:28.097-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:11:28.097-07:00 level=INFO msg="Unhandled ev1ent type: charge.succeeded"
+time=2026-02-21T17:11:28.097-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:11:28.097-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1.0695ms
+time=2026-02-21T17:11:28.193-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:11:28.255-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:11:28.255-07:00 level=INFO msg="Unhandled ev1ent type: payment_intent.created"
+time=2026-02-21T17:11:28.255-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:11:28.255-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=602.3µs
+time=2026-02-21T17:11:28.326-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:11:28.326-07:00 level=INFO msg="Unhandled ev1ent type: checkout.session.completed"
+time=2026-02-21T17:11:28.326-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:11:28.326-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1.1025ms
+time=2026-02-21T17:11:29.079-07:00 level=INFO msg="message sent: {\"event\":\"user.new_course\",\"data\":{\"local_product_ids\":[\"ae542611-1de7-4d14-9dc3-8e8a83eb2a1a\"],\"user_id\":\"e7c5d749-605a-458e-858c-09301bb2eda0\"}}"
+time=2026-02-21T17:11:29.127-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:11:29.128-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=934.9791ms
+time=2026-02-21T17:11:30.452-07:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2026-02-21T17:11:30.452-07:00 level=INFO msg="Unhandled ev1ent type: charge.updated"
+time=2026-02-21T17:11:30.452-07:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2026-02-21T17:11:30.452-07:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=533.4µs

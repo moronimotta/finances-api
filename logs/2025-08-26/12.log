@@ -1,0 +1,21 @@
+time=2025-08-26T12:11:14.536-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-26T12:11:14.536-03:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2025-08-26T12:11:14.681-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-26T12:11:37.557-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-26T12:11:37.558-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=636.9539ms
+time=2025-08-26T14:17:01.412-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-26T14:17:01.412-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.7836827s
+time=2025-08-26T14:17:15.443-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-26T14:17:15.444-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=443.5497ms
+time=2025-08-26T14:17:27.622-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-26T14:17:27.623-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=442.9403ms
+time=2025-08-26T14:17:48.975-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-26T14:17:48.975-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=441.9681ms
+time=2025-08-26T15:24:39.292-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-26T15:24:39.292-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.7207036s
+time=2025-08-26T15:24:40.448-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-26T15:24:40.448-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=419.3786ms
+time=2025-08-26T15:24:52.339-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-26T15:24:52.339-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=421.9629ms
+time=2025-08-26T15:24:53.059-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-26T15:24:53.059-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=208.5654ms

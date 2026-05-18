@@ -1,0 +1,7 @@
+time=2025-12-21T17:52:12.274-07:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-12-21T17:52:12.274-07:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2025-12-21T17:52:12.371-07:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-12-21T17:52:15.163-07:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-12-21T17:52:15.398-07:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=233.4617ms
+time=2025-12-21T17:52:16.234-07:00 level=INFO msg="All transactions retrieved successfully" count=12
+time=2025-12-21T17:52:16.235-07:00 level=INFO msg=Request method=GET path=/transactions status=200 duration=98.1293ms

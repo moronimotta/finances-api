@@ -1,0 +1,2 @@
+time=2025-07-07T15:28:13.344-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-07-07T15:28:13.431-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"

@@ -1,0 +1,8 @@
+time=2025-05-29T22:10:18.042-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-05-29T22:10:18.149-03:00 level=INFO msg=" [*] Waiting for messages in finance_queue. To exit press CTRL+C"
+time=2025-05-29T22:11:08.035-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-05-29T22:11:08.102-03:00 level=INFO msg=" [*] Waiting for messages in finance_queue. To exit press CTRL+C"
+time=2025-05-29T22:12:50.881-03:00 level=INFO msg="Received a message: {\"event\":\"user.created\",\"data\":{\"email\":\"dareevil7@gmail.com\",\"name\":\"Moroni Motta 2\"}}"
+time=2025-05-29T22:15:13.225-03:00 level=INFO msg="Received a message: {\"event\":\"user.created\",\"data\":{\"email\":\"dareevil27@gmail.com\",\"name\":\"Moroni Motta 3\"}}"
+time=2025-05-29T22:16:32.009-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-05-29T22:16:32.073-03:00 level=INFO msg=" [*] Waiting for messages in finance_queue. To exit press CTRL+C"

@@ -1,0 +1,5 @@
+time=2025-10-21T10:11:38.136-06:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-10-21T10:11:38.137-06:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2025-10-21T10:11:38.303-06:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-10-21T10:12:51.596-06:00 level=INFO msg="Retrieved all products" count=13
+time=2025-10-21T10:12:51.598-06:00 level=INFO msg=Request method=GET path=/products status=200 duration=130.793ms

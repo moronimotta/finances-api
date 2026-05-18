@@ -1,0 +1,10 @@
+time=2025-06-03T13:14:40.363-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-06-03T13:14:40.437-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-06-03T13:21:50.287-03:00 level=INFO msg=Request method=POST path=/checkout status=400 duration=504.5µs
+time=2025-06-03T13:22:07.552-03:00 level=INFO msg=Request method=POST path=/checkout status=400 duration=665.7931ms
+time=2025-06-03T13:48:07.696-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-06-03T13:48:07.773-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-06-03T13:48:19.315-03:00 level=INFO msg=Request method=POST path=/checkout status=400 duration=700.5803ms
+time=2025-06-03T13:49:16.921-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-06-03T13:49:16.992-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-06-03T13:50:02.180-03:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=942.7075ms

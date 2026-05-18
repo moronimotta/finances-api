@@ -1,0 +1,18 @@
+time=2025-09-15T08:56:03.214-06:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-09-15T08:56:03.214-06:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2025-09-15T08:56:03.324-06:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-09-15T08:57:56.611-06:00 level=INFO msg="Retrieved all products" count=10
+time=2025-09-15T08:57:56.612-06:00 level=INFO msg=Request method=GET path=/products status=200 duration=127.7313ms
+time=2025-09-15T08:59:30.410-06:00 level=INFO msg="Retrieved all products" count=10
+time=2025-09-15T08:59:30.410-06:00 level=INFO msg=Request method=GET path=/products status=200 duration=82.7347ms
+time=2025-09-15T09:02:14.169-06:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-15T09:02:14.515-06:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=339.0967ms
+time=2025-09-15T09:02:16.072-06:00 level=INFO msg="All transactions retrieved successfully" count=7
+time=2025-09-15T09:02:16.072-06:00 level=INFO msg=Request method=GET path=/transactions status=200 duration=131.5081ms
+time=2025-09-15T09:04:11.271-06:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-09-15T09:04:11.356-06:00 level=INFO msg="Retrieved all products" count=10
+time=2025-09-15T09:04:11.357-06:00 level=INFO msg=Request method=GET path=/products status=200 duration=84.1884ms
+time=2025-09-15T09:08:31.055-06:00 level=INFO msg="Retrieved all products" count=10
+time=2025-09-15T09:08:31.055-06:00 level=INFO msg=Request method=GET path=/products status=200 duration=83.2305ms
+time=2025-09-15T09:41:13.147-06:00 level=INFO msg="Retrieved all products" count=10
+time=2025-09-15T09:41:13.147-06:00 level=INFO msg=Request method=GET path=/products status=200 duration=376.4766ms

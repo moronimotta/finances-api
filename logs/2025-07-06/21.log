@@ -1,0 +1,11 @@
+time=2025-07-06T21:23:21.367-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-07-06T21:23:21.468-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-07-06T21:27:16.461-03:00 level=INFO msg="Received a message: {\"event\":\"user.created\",\"data\":{\"email\":\"moroni.art.motta3@gmail.com\",\"name\":\"Moroni Arthur Motta\",\"user_id\":\"eb668e84-4737-4748-8ddd-dfca3a79ff29\"}}"
+time=2025-07-06T21:27:17.364-03:00 level=INFO msg="message sent: {\"event\":\"user.updated\",\"data\":{\"external_id\":\"cus_SdJWRBLKDrOw2r\",\"id\":\"eb668e84-4737-4748-8ddd-dfca3a79ff29\"}}"
+time=2025-07-06T21:27:17.400-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-07-06T22:05:25.004-03:00 level=INFO msg=Request method=POST path=/checkout status=400 duration=0s
+time=2025-07-06T22:07:17.391-03:00 level=INFO msg=Request method=POST path=/checkout status=400 duration=30.7026755s
+time=2025-07-06T22:08:09.186-03:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=8.241322s
+time=2025-07-06T22:09:02.018-03:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=3.517423s
+time=2025-07-06T22:09:27.209-03:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=552.4765ms
+time=2025-07-06T22:10:01.635-03:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=528.7806ms

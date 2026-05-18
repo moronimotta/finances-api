@@ -45,6 +45,7 @@ type FinancialRepository interface {
 	// Transactions
 	CreateTransaction(transaction *entities.Transactions) error
 	GetTransactionByID(id string) (*entities.Transactions, error)
+	GetTransactionByExternalID(externalID string) (*entities.Transactions, error)
 	UpdateTransaction(transaction *entities.Transactions) error
 	DeleteTransaction(id string) error
 	GetTransactionsByUserIDAndProductID(userID, productID string) ([]entities.Transactions, error)

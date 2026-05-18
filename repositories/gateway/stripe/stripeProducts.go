@@ -74,6 +74,9 @@ func (r *stripeProductsRepository) DeactivateProduct(productID string) error {
 
 	params := &stripe.ProductParams{
 		Active: stripe.Bool(false),
+		Metadata: map[string]string{
+			"deactivated_reason": "Deleted in local database",
+		},
 	}
 
 	_, err := product.Update(productID, params)

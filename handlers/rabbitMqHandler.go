@@ -87,6 +87,32 @@ func (h *RabbitMqHandler) EventBus(event messageWorker.Event) error {
 			slog.Error("Error updating customer for event user.updated", err)
 			log.Printf("Error updating customer: %v", err)
 		}
+	case "course.deleted":
+		dataMap, ok := event.Data.(map[string]interface{})
+		if !ok {
+			slog.Error("Event data type assertion failed for event course.deleted")
+			return errors.New("event data is not a map[string]interface{}")
+		}
+
+		id := dataMap["product_id"].(string)
+		log.Printf("Received course.deleted event for product_id: %s", id)
+
+		product, err := h.usecases.Db.GetProductByID(id)
+		if err != nil {
+			slog.Error("Failed to get product for deletion", "error", err, "id", id)
+			return errors.New("error getting product")
+		}
+
+		if err := h.usecases.Gateway.DeactivateProduct(product.GatewayProductExternalID); err != nil {
+			slog.Error("Failed to deactivate product in gateway", "error", err)
+			return errors.New("error deactivating product in gateway")
+		}
+		if err := h.usecases.Db.DeleteProduct(product.ID); err != nil {
+			slog.Error("Failed to delete product from database", "error", err, "id", product.ID)
+			return errors.New("error deleting product")
+		}
+		log.Printf("Product with ID %s deleted successfully", id)
+
 	default:
 		return errors.New("event not found")
 	}

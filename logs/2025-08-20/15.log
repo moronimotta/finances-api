@@ -1,0 +1,39 @@
+time=2025-08-20T15:00:55.013-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-20T15:00:55.013-03:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2025-08-20T15:00:55.087-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-20T15:03:50.069-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-20T15:03:50.070-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-20T15:03:50.726-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-20T15:03:50.726-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=649.7562ms
+time=2025-08-20T15:03:50.935-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-20T15:03:50.940-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=212.6216ms
+time=2025-08-20T21:02:32.036-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-20T21:02:32.050-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-20T21:02:33.748-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-20T21:02:33.748-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.6908019s
+time=2025-08-20T21:02:33.753-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-20T21:02:33.753-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.7000568s
+time=2025-08-20T21:23:44.507-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-20T21:23:44.526-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-20T21:23:46.289-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-20T21:23:46.289-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.7614018s
+time=2025-08-20T21:23:46.575-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-20T21:23:46.575-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=2.0466524s
+time=2025-08-20T21:29:02.392-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-08-20T21:29:02.393-03:00 level=INFO msg="Unhandled ev1ent type: payout.reconciliation_completed"
+time=2025-08-20T21:29:02.393-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-08-20T21:29:02.393-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=4.4054ms
+time=2025-08-20T21:29:02.728-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-08-20T21:29:02.728-03:00 level=INFO msg="Unhandled ev1ent type: payout.created"
+time=2025-08-20T21:29:02.728-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-08-20T21:29:02.728-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-08-20T21:34:01.324-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-08-20T21:34:01.324-03:00 level=INFO msg="Unhandled ev1ent type: payout.paid"
+time=2025-08-20T21:34:01.324-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-08-20T21:34:01.324-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=551.9µs
+time=2025-08-20T22:26:41.317-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-20T22:26:41.321-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-08-20T22:26:43.173-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-20T22:26:43.173-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.8457094s
+time=2025-08-20T22:26:43.174-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-20T22:26:43.174-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.8493403s

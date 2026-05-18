@@ -1,0 +1,15 @@
+time=2025-09-15T17:35:18.639-06:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-09-15T17:35:18.640-06:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2025-09-15T17:35:18.698-06:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-09-15T17:54:31.576-06:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=642.1714ms
+time=2025-09-15T17:54:31.817-06:00 level=INFO msg="All transactions retrieved successfully" count=7
+time=2025-09-15T17:54:31.818-06:00 level=INFO msg=Request method=GET path=/transactions status=200 duration=86.1221ms
+time=2025-09-15T17:54:55.984-06:00 level=INFO msg="Retrieved all products" count=10
+time=2025-09-15T17:54:55.984-06:00 level=INFO msg=Request method=GET path=/products status=200 duration=84.9498ms
+time=2025-09-15T17:56:04.150-06:00 level=INFO msg="Received a message: {\"event\":\"course.deleted\",\"data\":{\"product_id\":\"ee0d61ad-b03e-4ca2-bc6a-cd6108a692b6\"}}"
+time=2025-09-15T17:56:04.150-06:00 level=INFO msg="Received course.deleted event for product_id: ee0d61ad-b03e-4ca2-bc6a-cd6108a692b6"
+time=2025-09-15T17:56:04.909-06:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-09-15T17:56:04.909-06:00 level=INFO msg="Unhandled ev1ent type: product.updated"
+time=2025-09-15T17:56:04.909-06:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-09-15T17:56:04.909-06:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=568.7µs
+time=2025-09-15T17:56:04.910-06:00 level=INFO msg="Product with ID ee0d61ad-b03e-4ca2-bc6a-cd6108a692b6 deleted successfully"

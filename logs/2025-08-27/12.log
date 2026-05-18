@@ -1,0 +1,23 @@
+time=2025-08-27T12:43:46.373-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-27T12:43:46.373-03:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2025-08-27T12:43:46.435-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-27T12:43:52.651-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-27T12:43:52.651-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=634.8308ms
+time=2025-08-27T12:58:15.029-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-08-27T12:58:15.029-03:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2025-08-27T12:58:15.098-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-08-27T12:58:33.685-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-27T12:58:33.685-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=641.7201ms
+time=2025-08-27T13:00:10.684-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-08-27T13:00:11.960-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=1.2741912s
+time=2025-08-27T14:52:07.279-03:00 level=INFO msg=Request method=POST path=/posts status=404 duration=0s
+time=2025-08-27T15:14:16.239-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-27T15:14:16.240-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.696743s
+time=2025-08-27T15:20:50.391-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-27T15:20:50.391-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=414.2582ms
+time=2025-08-27T15:22:37.765-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-27T15:22:37.765-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=425.5554ms
+time=2025-08-27T15:52:16.170-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-27T15:52:16.171-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.7110779s
+time=2025-08-27T15:52:53.932-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-08-27T15:52:53.932-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=430.7607ms

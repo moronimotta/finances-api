@@ -20,7 +20,7 @@ func Connect() (Database, error) {
 	}
 
 	if err := db.AutoMigrate(&entities.Gateway{},
-		&entities.Invoices{},
+		// &entities.Invoices{},
 		&entities.Products{},
 		&entities.UserProducts{},
 		&entities.Transactions{},

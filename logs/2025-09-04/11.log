@@ -1,0 +1,62 @@
+time=2025-09-04T11:13:00.845-03:00 level=INFO msg="Starting RabbitMQ server..."
+time=2025-09-04T11:13:00.845-03:00 level=INFO msg="Starting RabbitMQ consumer..."
+time=2025-09-04T11:13:00.961-03:00 level=INFO msg=" [*] Waiting for messages in main-finance. To exit press CTRL+C"
+time=2025-09-04T11:14:33.909-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-09-04T11:14:33.909-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=627.341ms
+time=2025-09-04T11:15:58.789-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-04T11:16:00.058-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=1.2644229s
+time=2025-09-04T11:16:53.343-03:00 level=INFO msg="Checkout session created successfully" !BADKEY=<nil>
+time=2025-09-04T11:16:53.344-03:00 level=INFO msg=Request method=POST path=/checkout status=200 duration=995.3453ms
+time=2025-09-04T11:17:05.048-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-09-04T11:17:05.048-03:00 level=INFO msg="Unhandled ev1ent type: charge.succeeded"
+time=2025-09-04T11:17:05.048-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-09-04T11:17:05.048-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=1.0879ms
+time=2025-09-04T11:17:05.125-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-09-04T11:17:05.168-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-09-04T11:17:05.168-03:00 level=INFO msg="Unhandled ev1ent type: payment_intent.created"
+time=2025-09-04T11:17:05.168-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-09-04T11:17:05.168-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=595.8µs
+time=2025-09-04T11:17:05.352-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-09-04T11:17:05.353-03:00 level=INFO msg="Unhandled ev1ent type: checkout.session.completed"
+time=2025-09-04T11:17:05.353-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-09-04T11:17:05.353-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=533.9µs
+time=2025-09-04T11:17:07.654-03:00 level=INFO msg="Error verifying webhook signature: Received event with API version 2024-06-20, but stripe-go 82.1.0 expects API version 2025-04-30.basil. We recommend that you create a WebhookEndpoint with this API version. Otherwise, you can disable this error by using `ConstructEventWithOptions(..., ConstructEventOptions{..., ignoreAPIVersionMismatch: true})`  but be wary that objects may be incorrectly deserialized."
+time=2025-09-04T11:17:07.654-03:00 level=INFO msg="Unhandled ev1ent type: charge.updated"
+time=2025-09-04T11:17:07.654-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-09-04T11:17:07.654-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=553.3µs
+time=2025-09-04T11:17:08.237-03:00 level=INFO msg="message sent: {\"event\":\"user.new_course\",\"data\":{\"local_product_ids\":[\"64400c2f-5524-446e-a2bd-5541451efde2\",\"ae542611-1de7-4d14-9dc3-8e8a83eb2a1a\"],\"user_id\":\"d2966b5a-8bb5-4280-9615-0da3c6738c8c\"}}"
+time=2025-09-04T11:17:08.287-03:00 level=INFO msg="Webhook event processed successfully" !BADKEY=<nil>
+time=2025-09-04T11:17:08.287-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=3.1613297s
+time=2025-09-04T11:17:16.704-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=1.0526355s
+time=2025-09-04T11:29:57.717-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=3.2996272s
+time=2025-09-04T11:30:41.533-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-04T11:30:42.405-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=860.3099ms
+time=2025-09-04T11:33:51.222-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-04T11:33:52.108-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=880.0266ms
+time=2025-09-04T11:34:43.739-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-04T11:34:44.913-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=1.1686846s
+time=2025-09-04T11:35:34.014-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-04T11:35:34.897-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=877.5764ms
+time=2025-09-04T11:36:12.090-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-04T11:36:12.970-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=872.5602ms
+time=2025-09-04T11:37:14.776-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=859.003ms
+time=2025-09-04T11:37:37.505-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=849.5217ms
+time=2025-09-04T11:37:38.157-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=649.1752ms
+time=2025-09-04T11:37:42.928-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=858.1875ms
+time=2025-09-04T11:42:49.347-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=860.1324ms
+time=2025-09-04T11:43:02.463-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=865.9328ms
+time=2025-09-04T11:44:48.383-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-04T11:44:49.254-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=866.6757ms
+time=2025-09-04T11:45:44.176-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-04T11:45:45.051-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=870.3889ms
+time=2025-09-04T11:46:39.748-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-04T11:46:40.623-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=867.8477ms
+time=2025-09-04T11:46:44.164-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-04T11:46:45.058-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=865.1935ms
+time=2025-09-04T12:21:38.419-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-04T12:21:41.415-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=2.9899868s
+time=2025-09-04T14:02:09.252-03:00 level=INFO msg=Request method=OPTIONS path=/products status=204 duration=0s
+time=2025-09-04T14:02:10.981-03:00 level=INFO msg="Retrieved all products" count=10
+time=2025-09-04T14:02:10.981-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=1.7274097s
+time=2025-09-04T14:07:07.043-03:00 level=INFO msg=Request method=OPTIONS path=/admin/dashboard/info status=204 duration=0s
+time=2025-09-04T14:07:08.406-03:00 level=INFO msg=Request method=GET path=/admin/dashboard/info status=200 duration=1.3452679s

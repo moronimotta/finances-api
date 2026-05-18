@@ -1,0 +1,9 @@
+time=2025-05-28T23:00:59.520-03:00 level=INFO msg=Request method=POST path=/products status=200 duration=2.9040666s
+time=2025-05-28T23:01:06.520-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=634.9292ms
+time=2025-05-28T23:02:23.347-03:00 level=INFO msg=Request method=PUT path=/products/86a7d6ab-bcbe-4bf0-bf7f-e3a55bfc7eeb status=400 duration=0s
+time=2025-05-28T23:02:53.971-03:00 level=INFO msg=Request method=PUT path=/products/86a7d6ab-bcbe-4bf0-bf7f-e3a55bfc7eeb status=400 duration=0s
+time=2025-05-28T23:03:05.891-03:00 level=INFO msg=Request method=PUT path=/products/86a7d6ab-bcbe-4bf0-bf7f-e3a55bfc7eeb status=200 duration=2.385742s
+time=2025-05-28T23:10:27.319-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=686.4328ms
+time=2025-05-28T23:11:10.105-03:00 level=INFO msg=Request method=DELETE path=/products/a1c53a13-34f4-4a4c-b472-b9ecfcc928d4 status=200 duration=2.6130436s
+time=2025-05-28T23:12:03.323-03:00 level=INFO msg=Request method=GET path=/products/g/prod_SOcXNsKFqTxYnR status=400 duration=455.1148ms
+time=2025-05-28T23:12:53.665-03:00 level=INFO msg=Request method=GET path=/products/c4df865a-291d-4a06-a19e-3fd637fb5595 status=200 duration=453.228ms

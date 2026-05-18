@@ -1,0 +1,14 @@
+time=2025-05-28T16:02:45.694-03:00 level=INFO msg=Request method=GET path=/products/c4df865a-291d-4a06-a19e-3fd637fb5595 status=200 duration=698.3633ms
+time=2025-05-28T16:04:24.853-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=3.9023855s
+time=2025-05-28T16:04:24.853-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-05-28T16:04:25.969-03:00 level=INFO msg=Request method=POST path=/products status=200 duration=5.9428789s
+time=2025-05-28T16:04:39.035-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=2.8931482s
+time=2025-05-28T16:05:53.028-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-05-28T16:05:53.387-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-05-28T16:05:54.372-03:00 level=INFO msg=Request method=POST path=/products status=200 duration=2.2573628s
+time=2025-05-28T16:05:58.233-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=650.4991ms
+time=2025-05-28T16:06:30.821-03:00 level=INFO msg=Request method=GET path=/products status=200 duration=443.906ms
+time=2025-05-28T16:08:00.379-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-05-28T16:08:00.563-03:00 level=INFO msg=Request method=PUT path=/products/86a7d6ab-bcbe-4bf0-bf7f-e3a55bfc7eeb status=400 duration=12.4723508s
+time=2025-05-28T16:08:51.682-03:00 level=INFO msg=Request method=POST path=/webhook/stripe status=200 duration=0s
+time=2025-05-28T16:09:03.901-03:00 level=INFO msg=Request method=PUT path=/products/86a7d6ab-bcbe-4bf0-bf7f-e3a55bfc7eeb status=400 duration=47.5499852s
