@@ -2,6 +2,8 @@ package stripeRepository
 
 import (
 	"finances-api/entities"
+	"fmt"
+	"strings"
 
 	"github.com/stripe/stripe-go/v82"
 	"github.com/stripe/stripe-go/v82/price"
@@ -28,18 +30,24 @@ func NewStripePriceRepository(key string) StripePrice {
 
 func (r *stripePriceRepository) CreatePrice(productID string, unitAmount int64, currency string) (string, error) {
 	stripe.Key = r.stripeKey
+	if strings.TrimSpace(currency) == "" {
+		currency = string(stripe.CurrencyUSD)
+	}
 
-	price_params := &stripe.PriceParams{
-		Currency:   stripe.String(string(stripe.CurrencyUSD)),
+	priceParams := &stripe.PriceParams{
+		Currency:   stripe.String(currency),
 		Product:    stripe.String(productID),
 		UnitAmount: stripe.Int64(unitAmount),
 	}
-	starter_price, _ := price.New(price_params)
-	if starter_price == nil {
-		return "", nil
+	starterPrice, err := price.New(priceParams)
+	if err != nil {
+		return "", err
+	}
+	if starterPrice == nil {
+		return "", fmt.Errorf("Stripe returned an empty price")
 	}
 
-	return starter_price.ID, nil
+	return starterPrice.ID, nil
 }
 
 func (r *stripePriceRepository) UpdatePrice(priceID string, unitAmount int64, currency string) error {

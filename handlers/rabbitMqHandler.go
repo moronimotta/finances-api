@@ -2,10 +2,14 @@ package handlers
 
 import (
 	"errors"
+	"finances-api/entities"
 	usecases "finances-api/usecases"
 	"log"
 	"log/slog"
+	"math"
 	"os"
+	"strconv"
+	"strings"
 
 	messageWorker "github.com/moronimotta/message-worker-module"
 	"github.com/redis/go-redis/v9"
@@ -41,6 +45,12 @@ func (h *RabbitMqHandler) PublishMessage(topicName, eventName string, data map[s
 func (h *RabbitMqHandler) EventBus(event messageWorker.Event) error {
 
 	switch event.Event {
+	case "service.created":
+		dataMap, ok := event.Data.(map[string]interface{})
+		if !ok {
+			return errors.New("event data is not a map[string]interface{}")
+		}
+		return h.createServicePaymentProduct(dataMap)
 	case "user.created":
 		dataMap, ok := event.Data.(map[string]interface{})
 		if !ok {
@@ -117,4 +127,88 @@ func (h *RabbitMqHandler) EventBus(event messageWorker.Event) error {
 		return errors.New("event not found")
 	}
 	return nil
+}
+
+func (h *RabbitMqHandler) createServicePaymentProduct(data map[string]interface{}) error {
+	serviceID, err := eventString(data, "service_id")
+	if err != nil {
+		return err
+	}
+	name, err := eventString(data, "name")
+	if err != nil {
+		return err
+	}
+	description, _ := data["description"].(string)
+	currency, err := eventString(data, "currency")
+	if err != nil {
+		return err
+	}
+	currency = strings.ToLower(currency)
+	amount, err := eventAmount(data["price"])
+	if err != nil {
+		return err
+	}
+
+	localProduct := entities.Products{
+		ID:          serviceID,
+		Name:        name,
+		Description: description,
+		Price:       amount,
+		Currency:    currency,
+	}
+	productID, err := h.usecases.Gateway.CreateProduct(name, description, localProduct)
+	if err != nil {
+		return err
+	}
+	if strings.TrimSpace(productID) == "" {
+		return errors.New("Stripe did not return a product ID for service")
+	}
+	priceID, err := h.usecases.Gateway.CreatePrice(productID, amount, currency)
+	if err != nil {
+		return err
+	}
+	if strings.TrimSpace(priceID) == "" {
+		return errors.New("Stripe did not return a price ID for service")
+	}
+
+	return h.PublishMessage("barber-app", "service.payment_details_created", map[string]string{
+		"service_id":        serviceID,
+		"external_id":       productID,
+		"external_price_id": priceID,
+	})
+}
+
+func eventString(data map[string]interface{}, key string) (string, error) {
+	value, ok := data[key].(string)
+	if !ok || strings.TrimSpace(value) == "" {
+		return "", errors.New("event field " + key + " must be a non-empty string")
+	}
+	return strings.TrimSpace(value), nil
+}
+
+func eventAmount(value interface{}) (int64, error) {
+	var amount int64
+	switch typed := value.(type) {
+	case int:
+		amount = int64(typed)
+	case int64:
+		amount = typed
+	case float64:
+		if math.Trunc(typed) != typed || typed > math.MaxInt64 || typed < math.MinInt64 {
+			return 0, errors.New("event field price must be an integer amount")
+		}
+		amount = int64(typed)
+	case string:
+		parsed, err := strconv.ParseInt(typed, 10, 64)
+		if err != nil {
+			return 0, errors.New("event field price must be an integer amount")
+		}
+		amount = parsed
+	default:
+		return 0, errors.New("event field price must be an integer amount")
+	}
+	if amount <= 0 {
+		return 0, errors.New("event field price must be greater than zero")
+	}
+	return amount, nil
 }

@@ -3,6 +3,7 @@ package stripeRepository
 import (
 	"finances-api/entities"
 	"finances-api/utils/meta"
+	"fmt"
 
 	"github.com/stripe/stripe-go/v82"
 	"github.com/stripe/stripe-go/v82/product"
@@ -35,11 +36,14 @@ func (r *stripeProductsRepository) CreateProduct(name, description string, local
 			"local_product_id": localProduct.ID,
 		},
 	}
-	starter_product, _ := product.New(product_params)
-	if starter_product == nil {
-		return "", nil
+	starterProduct, err := product.New(product_params)
+	if err != nil {
+		return "", err
 	}
-	return starter_product.ID, nil
+	if starterProduct == nil {
+		return "", fmt.Errorf("Stripe returned an empty product")
+	}
+	return starterProduct.ID, nil
 }
 
 func (r *stripeProductsRepository) UpdateProduct(productID, name, description string, meta meta.Meta) error {

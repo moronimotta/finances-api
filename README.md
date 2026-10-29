@@ -25,3 +25,7 @@ The published message uses the standard message-worker envelope (`event` and `da
 ## Existing payment events
 
 The successful-payment transaction workflow remains in place, including the existing `akademia-api` / `user.new_course` publication based on course metadata. Subscription and customer webhook handling is unchanged. Unknown Stripe event types continue to be logged and ignored.
+
+## Barber service catalog synchronization
+
+Barber App publishes `service.created` to the `finance-api` topic after storing a service. Its `data` includes `service_id`, `name`, `description`, `price` (a positive integer in the currency's minor unit), and `currency` (for example, `usd`). Payment API creates the Stripe product and recurring-independent one-time price, then publishes `service.payment_details_created` to the `barber-app` topic. The reply carries `service_id`, `external_id` (Stripe product ID), and `external_price_id` (Stripe price ID); Barber App stores both IDs on the service. The payment API returns event errors for malformed service data or Stripe API errors so the message can be retried.
