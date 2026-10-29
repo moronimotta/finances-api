@@ -1,16 +1,17 @@
 package confs
 
 import (
-	"log"
+	"errors"
+	"os"
 
 	"github.com/joho/godotenv"
 )
 
 func LoadConfig() error {
 	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
+	if errors.Is(err, os.ErrNotExist) {
+		// Container deployments provide configuration through environment variables.
+		return nil
 	}
-
-	return nil
+	return err
 }

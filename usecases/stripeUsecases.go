@@ -10,8 +10,17 @@ import (
 	"os"
 	"strings"
 
+	"github.com/google/uuid"
 	"github.com/stripe/stripe-go/v82"
+	"github.com/stripe/stripe-go/v82/paymentintent"
 	"github.com/stripe/stripe-go/v82/webhook"
+)
+
+const (
+	barberPaymentContextKey = "payment_context"
+	barberPaymentContext    = "barber"
+	appointmentIDMetadata   = "appointment_id"
+	barberEventsTopic       = "barber-app"
 )
 
 type StripeUsecase struct {
@@ -31,9 +40,20 @@ func NewStripeUsecase(usecases *PaymentAPIUsecases) *StripeUsecase {
 func (s *StripeUsecase) EventBus(payload []byte, signature string) error {
 
 	// Verify the webhook signature
-	event, err := webhook.ConstructEvent(payload, signature, os.Getenv("STRIPE_SECRET_ENDPOINT"))
+	event, err := webhook.ConstructEventWithOptions(
+		payload,
+		signature,
+		os.Getenv("STRIPE_SECRET_ENDPOINT"),
+		webhook.ConstructEventOptions{
+			// Local Stripe CLI events can use an older API version than this SDK.
+			// Keep signature and timestamp verification enabled; opt into only the
+			// API-version compatibility check through local configuration.
+			IgnoreAPIVersionMismatch: os.Getenv("STRIPE_IGNORE_API_VERSION_MISMATCH") == "true",
+		},
+	)
 	if err != nil {
 		log.Printf("Error verifying webhook signature: %v\n", err)
+		return err
 	}
 
 	switch event.Type {
@@ -55,6 +75,16 @@ func (s *StripeUsecase) EventBus(payload []byte, signature string) error {
 			return err
 		}
 
+		if appointmentID, ok := barberAppointmentID(paymentIntent.Metadata); ok && s.Pub != nil {
+			return s.Pub.Publish(barberEventsTopic, "appointment_status_update", map[string]interface{}{
+				"appointment_id":    appointmentID,
+				"status":            "scheduled",
+				"payment_event":     "payment_intent.succeeded",
+				"payment_intent_id": paymentIntent.ID,
+				"charge_id":         paymentIntent.LatestCharge.ID,
+			})
+		}
+
 		// TODO: Send a CRM communication
 
 	case "customer.subscription.created":
@@ -72,10 +102,62 @@ func (s *StripeUsecase) EventBus(payload []byte, signature string) error {
 		if err != nil {
 			return err
 		}
+
+		metadata, err := paymentIntentMetadataForCharge(&charge)
+		if err != nil {
+			return err
+		}
+		if appointmentID, ok := barberAppointmentID(metadata); ok && s.Pub != nil {
+			return s.Pub.Publish(barberEventsTopic, "appointment_status_update", map[string]interface{}{
+				"appointment_id":    appointmentID,
+				"status":            "canceled",
+				"payment_event":     "charge.refunded",
+				"payment_intent_id": paymentIntentID(&charge),
+				"charge_id":         charge.ID,
+			})
+		}
 	default:
 		log.Printf("Unhandled ev1ent type: %s\n", event.Type)
 	}
 	return nil
+}
+
+// barberAppointmentID accepts only the explicit Barber payment context and a
+// syntactically valid appointment UUID. Metadata without both values is not a
+// Barber payment and must not produce Barber events.
+func barberAppointmentID(metadata map[string]string) (string, bool) {
+	if metadata[barberPaymentContextKey] != barberPaymentContext {
+		return "", false
+	}
+	appointmentID := strings.TrimSpace(metadata[appointmentIDMetadata])
+	parsedID, err := uuid.Parse(appointmentID)
+	if err != nil {
+		return "", false
+	}
+	return parsedID.String(), true
+}
+
+func paymentIntentMetadataForCharge(charge *stripe.Charge) (map[string]string, error) {
+	if charge.PaymentIntent != nil && charge.PaymentIntent.Metadata != nil {
+		return charge.PaymentIntent.Metadata, nil
+	}
+	if charge.PaymentIntent == nil || charge.PaymentIntent.ID == "" {
+		return charge.Metadata, nil
+	}
+
+	stripe.Key = os.Getenv("STRIPE_KEY")
+	intent, err := paymentintent.Get(charge.PaymentIntent.ID, nil)
+	if err != nil {
+		return nil, fmt.Errorf("retrieve payment intent %s for refund metadata: %w", charge.PaymentIntent.ID, err)
+	}
+	return intent.Metadata, nil
+}
+
+func paymentIntentID(charge *stripe.Charge) string {
+	if charge.PaymentIntent == nil {
+		return ""
+	}
+	return charge.PaymentIntent.ID
 }
 
 func (s *StripeUsecase) CreateTransaction(input entities.Transactions) error {

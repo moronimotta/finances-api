@@ -1,23 +1,13 @@
 FROM golang:1.24.2 AS builder
-
-WORKDIR /app
-
+WORKDIR /src
 COPY go.mod go.sum ./
-
 RUN go mod download
-
 COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -o /out/payment-api .
 
-RUN go build -o main .
-
-FROM golang:1.24.2
-
+FROM alpine:3.22
+RUN apk add --no-cache ca-certificates
 WORKDIR /app
-
-COPY --from=builder /app/main .
-
-COPY .env ./
-
-EXPOSE 8080
-
-CMD ["./main"]
+COPY --from=builder /out/payment-api ./payment-api
+EXPOSE 9090
+ENTRYPOINT ["./payment-api"]

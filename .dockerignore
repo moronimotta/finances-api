@@ -1,0 +1,7 @@
+.git
+.env
+*.pem
+*.exe
+*.log
+logs/
+tmp/
