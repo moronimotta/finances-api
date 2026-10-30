@@ -13,6 +13,7 @@ type GatewayRepository interface {
 	GetCharge(chargeID string) (entities.Transactions, error)
 	GetPrice(priceID []string) ([]entities.TransactionItem, error)
 	CreateCheckoutSession(priceID []string, productID string, meta meta.Meta) (string, error)
+	CreateAppointmentCheckoutSession(priceIDs []string, appointmentID string, metadata meta.Meta) (entities.CheckoutSession, error)
 	DeactivateProduct(productID string) error
 	CreateCustomer(name, email, localUserID string) (string, error)
 	UpdateCustomer(customerID, name, email string) error
@@ -22,6 +23,7 @@ type FinancialRepository interface {
 	// Products
 	CreateProduct(product *entities.Products) error
 	GetProductByID(id string) (*entities.Products, error)
+	GetProductByBarberServiceID(serviceID string) (*entities.Products, error)
 	GetAllProducts() ([]entities.Products, error)
 	GetProductByExternalID(externalID string) (*entities.Products, error)
 	UpdateProduct(product *entities.Products) error
@@ -46,6 +48,9 @@ type FinancialRepository interface {
 	CreateTransaction(transaction *entities.Transactions) error
 	GetTransactionByID(id string) (*entities.Transactions, error)
 	GetTransactionByExternalID(externalID string) (*entities.Transactions, error)
+	GetTransactionByAppointmentID(appointmentID string) (*entities.Transactions, error)
+	GetTransactionByPaymentIntentID(paymentIntentID string) (*entities.Transactions, error)
+	GetTransactionByCheckoutAttemptID(attemptID string) (*entities.Transactions, error)
 	UpdateTransaction(transaction *entities.Transactions) error
 	DeleteTransaction(id string) error
 	GetTransactionsByUserIDAndProductID(userID, productID string) ([]entities.Transactions, error)

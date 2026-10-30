@@ -33,7 +33,8 @@ func (r *stripeProductsRepository) CreateProduct(name, description string, local
 		Name:        stripe.String(name),
 		Description: stripe.String(description),
 		Metadata: map[string]string{
-			"local_product_id": localProduct.ID,
+			"local_product_id":  localProduct.ID,
+			"barber_service_id": localProduct.BarberServiceID,
 		},
 	}
 	starterProduct, err := product.New(product_params)

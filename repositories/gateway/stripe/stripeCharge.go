@@ -23,14 +23,25 @@ func NewStripeChargeRepository(key string) StripeCharge {
 func (r *stripeChargeRepository) GetCharge(chargeID string) (entities.Transactions, error) {
 	var output entities.Transactions
 	stripe.Key = r.stripeKey
-	ch, err := charge.Get(chargeID, nil)
+	params := &stripe.ChargeParams{}
+	params.AddExpand("balance_transaction")
+	ch, err := charge.Get(chargeID, params)
 	if err != nil {
 		return output, err
 	}
 
-	output.PaymentMethod = string(ch.PaymentMethodDetails.Type)
+	if ch.PaymentMethodDetails != nil {
+		output.PaymentMethod = string(ch.PaymentMethodDetails.Type)
+	}
 	output.Currency = string(ch.Currency)
+	output.AmountTotal = ch.Amount
+	output.AmountPayed = ch.AmountCaptured
 	output.AmountRefunded = ch.AmountRefunded
+	if ch.BalanceTransaction != nil {
+		output.StripeFee = ch.BalanceTransaction.Fee
+		output.StripeFeeKnown = true
+	}
+	output.NetAmount = output.AmountTotal - output.AmountRefunded - output.StripeFee
 	if ch.Refunded {
 		output.Status = "refunded"
 	}

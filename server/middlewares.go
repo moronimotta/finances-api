@@ -26,7 +26,7 @@ func (s *Server) initializeMiddlewares() {
 	s.app.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{"GET", "POST", "PUT", "DELETE"},
-		AllowHeaders: []string{"Origin", "Content-Type", "Accept"},
+		AllowHeaders: []string{"Origin", "Content-Type", "Accept", "Authorization"},
 		MaxAge:       12 * time.Hour,
 	}))
 }

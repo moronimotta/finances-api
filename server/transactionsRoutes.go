@@ -9,8 +9,9 @@ import (
 )
 
 func (s *Server) initTransactionsRoutes() {
+	transactionRoutes := s.app.Group("/transactions", adminToken())
 
-	s.app.POST("/transactions", func(ctx *gin.Context) {
+	transactionRoutes.POST("", func(ctx *gin.Context) {
 		transaction := entities.Transactions{}
 
 		if err := ctx.ShouldBindJSON(&transaction); err != nil {
@@ -29,7 +30,7 @@ func (s *Server) initTransactionsRoutes() {
 		ctx.JSON(http.StatusOK, gin.H{"message": "Transaction created successfully"})
 	})
 
-	s.app.GET("/transactions/:id", func(ctx *gin.Context) {
+	transactionRoutes.GET("/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
 		transaction, err := s.usecases.Db.GetTransactionByID(id)
 		if err != nil {
@@ -41,7 +42,7 @@ func (s *Server) initTransactionsRoutes() {
 		ctx.JSON(http.StatusOK, transaction)
 	})
 
-	s.app.PUT("/transactions/:id", func(ctx *gin.Context) {
+	transactionRoutes.PUT("/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
 		transaction := entities.Transactions{}
 
@@ -62,7 +63,7 @@ func (s *Server) initTransactionsRoutes() {
 		slog.Info("Transaction updated successfully", "id", id)
 		ctx.JSON(http.StatusOK, gin.H{"message": "Transaction updated successfully"})
 	})
-	s.app.DELETE("/transactions/:id", func(ctx *gin.Context) {
+	transactionRoutes.DELETE("/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
 		if err := s.usecases.Db.DeleteTransaction(id); err != nil {
 			slog.Error("Error deleting transaction", "id", id, "error", err)
@@ -72,7 +73,7 @@ func (s *Server) initTransactionsRoutes() {
 		slog.Info("Transaction deleted successfully", "id", id)
 		ctx.JSON(http.StatusOK, gin.H{"message": "Transaction deleted successfully"})
 	})
-	s.app.GET("/transactions/user/:user_id/product/:product_id", func(ctx *gin.Context) {
+	transactionRoutes.GET("/user/:user_id/product/:product_id", func(ctx *gin.Context) {
 		userID := ctx.Param("user_id")
 		productID := ctx.Param("product_id")
 
@@ -86,7 +87,7 @@ func (s *Server) initTransactionsRoutes() {
 		ctx.JSON(http.StatusOK, transactions)
 	})
 
-	s.app.GET("/transactions", func(ctx *gin.Context) {
+	transactionRoutes.GET("", func(ctx *gin.Context) {
 		transactions, err := s.usecases.Db.GetAllTransactions()
 		if err != nil {
 			slog.Error("Error getting all transactions", "error", err)
@@ -97,7 +98,7 @@ func (s *Server) initTransactionsRoutes() {
 		ctx.JSON(http.StatusOK, transactions)
 	})
 
-	s.app.GET("/transactions/product/:product_id", func(ctx *gin.Context) {
+	transactionRoutes.GET("/product/:product_id", func(ctx *gin.Context) {
 		productID := ctx.Param("product_id")
 
 		transactions, err := s.usecases.Db.GetTransactionsByProductID(productID)

@@ -8,6 +8,7 @@ import (
 type PgProducts interface {
 	CreateProduct(product *entities.Products) error
 	GetProductByID(id string) (*entities.Products, error)
+	GetProductByBarberServiceID(serviceID string) (*entities.Products, error)
 	GetAllProducts() ([]entities.Products, error)
 	GetProductByExternalID(externalID string) (*entities.Products, error)
 	UpdateProduct(product *entities.Products) error
@@ -35,6 +36,14 @@ func (r *pgProductsRepository) CreateProduct(product *entities.Products) error {
 func (r *pgProductsRepository) GetProductByID(id string) (*entities.Products, error) {
 	product := &entities.Products{}
 	if err := r.db.GetDB().Where("id = ?", id).First(product).Error; err != nil {
+		return nil, err
+	}
+	return product, nil
+}
+
+func (r *pgProductsRepository) GetProductByBarberServiceID(serviceID string) (*entities.Products, error) {
+	product := &entities.Products{}
+	if err := r.db.GetDB().Where("barber_service_id = ?", serviceID).First(product).Error; err != nil {
 		return nil, err
 	}
 	return product, nil

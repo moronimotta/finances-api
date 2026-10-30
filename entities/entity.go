@@ -10,6 +10,7 @@ import (
 
 type Products struct {
 	ID                       string `json:"id"`
+	BarberServiceID          string `json:"barber_service_id" gorm:"uniqueIndex:idx_products_barber_service_id,where:barber_service_id <> ''"`
 	Name                     string `json:"name"`
 	Description              string `json:"description"`
 	Price                    int64  `json:"price"`
@@ -29,6 +30,16 @@ type Checkout struct {
 	SessionID   string    `json:"session_id"`
 	GatewayName string    `json:"gateway_name"`
 	Meta        meta.Meta `json:"meta"`
+}
+
+type CheckoutSession struct {
+	ID  string `json:"session_id"`
+	URL string `json:"checkout_url"`
+}
+
+type AppointmentCheckoutRequest struct {
+	AppointmentID string   `json:"appointment_id" binding:"required"`
+	ServiceIDs    []string `json:"service_ids" binding:"required,min=1"`
 }
 
 type UserProducts struct {
@@ -56,20 +67,29 @@ type Invoices struct {
 }
 
 type Transactions struct {
-	ID             string            `json:"id"`
-	UserExternalID string            `json:"user_external_id"`
-	Items          []TransactionItem `json:"items" gorm:"foreignKey:TransactionID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
-	AmountPayed    int64             `json:"amount_paid"`
-	AmountTotal    int64             `json:"amount_total"`
-	AmountRefunded int64             `json:"amount_refunded"`
-	Status         string            `json:"status"`          // paid, pending, failed, refunded
-	Type           string            `json:"type"`            // product, subscription
-	PaymentMethod  string            `json:"payment_method"`  // card, bank_transfer
-	PaymentDetails string            `json:"payment_details"` // cardbrand...
-	ReceiptURL     string            `json:"receipt_url"`
-	ExternalID     string            `json:"external_id"` // e.g Stripe will be charge_id
-	Currency       string            `json:"currency"`
-	Meta           meta.Meta         `json:"meta"`
+	ID                    string            `json:"id"`
+	UserExternalID        string            `json:"user_external_id"`
+	Items                 []TransactionItem `json:"items" gorm:"foreignKey:TransactionID;references:ID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
+	AmountPayed           int64             `json:"amount_paid"`
+	AmountTotal           int64             `json:"amount_total"`
+	AmountRefunded        int64             `json:"amount_refunded"`
+	StripeFee             int64             `json:"stripe_fee"`
+	NetAmount             int64             `json:"net_amount"`
+	StripeFeeKnown        bool              `json:"stripe_fee_known"`
+	Status                string            `json:"status"` // legacy status for non-appointment payments
+	PaymentStatus         string            `json:"payment_status" gorm:"index"`
+	AppointmentID         string            `json:"appointment_id" gorm:"index"`
+	StripeSessionID       string            `json:"stripe_session_id" gorm:"uniqueIndex:idx_transactions_stripe_session_id,where:stripe_session_id <> ''"`
+	StripePaymentIntentID string            `json:"payment_intent_id" gorm:"uniqueIndex:idx_transactions_payment_intent_id,where:payment_intent_id <> ''"`
+	CheckoutAttemptID     string            `json:"checkout_attempt_id" gorm:"uniqueIndex:idx_transactions_checkout_attempt_id,where:checkout_attempt_id <> ''"`
+	CheckoutURL           string            `json:"checkout_url"`
+	Type                  string            `json:"type"`            // product, subscription
+	PaymentMethod         string            `json:"payment_method"`  // card, bank_transfer
+	PaymentDetails        string            `json:"payment_details"` // cardbrand...
+	ReceiptURL            string            `json:"receipt_url"`
+	ExternalID            string            `json:"external_id"` // e.g Stripe will be charge_id
+	Currency              string            `json:"currency"`
+	Meta                  meta.Meta         `json:"meta"`
 
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`

@@ -9,6 +9,9 @@ type PgTransactions interface {
 	CreateTransaction(transaction *entities.Transactions) error
 	GetTransactionByID(id string) (*entities.Transactions, error)
 	GetTransactionByExternalID(externalID string) (*entities.Transactions, error)
+	GetTransactionByAppointmentID(appointmentID string) (*entities.Transactions, error)
+	GetTransactionByPaymentIntentID(paymentIntentID string) (*entities.Transactions, error)
+	GetTransactionByCheckoutAttemptID(attemptID string) (*entities.Transactions, error)
 	UpdateTransaction(transaction *entities.Transactions) error
 	DeleteTransaction(id string) error
 	GetTransactionsByUserIDAndProductID(userID, productID string) ([]entities.Transactions, error)
@@ -50,7 +53,39 @@ func (r *pgTransactionsRepository) GetTransactionByExternalID(externalID string)
 	}
 	return transaction, nil
 }
+
+func (r *pgTransactionsRepository) GetTransactionByAppointmentID(appointmentID string) (*entities.Transactions, error) {
+	transaction := &entities.Transactions{}
+	if err := r.db.GetDB().Preload("Items").Where("appointment_id = ?", appointmentID).Order("created_at DESC").First(transaction).Error; err != nil {
+		return nil, err
+	}
+	return transaction, nil
+}
+
+func (r *pgTransactionsRepository) GetTransactionByPaymentIntentID(paymentIntentID string) (*entities.Transactions, error) {
+	transaction := &entities.Transactions{}
+	if err := r.db.GetDB().Preload("Items").Where("stripe_payment_intent_id = ?", paymentIntentID).First(transaction).Error; err != nil {
+		return nil, err
+	}
+	return transaction, nil
+}
+
+func (r *pgTransactionsRepository) GetTransactionByCheckoutAttemptID(attemptID string) (*entities.Transactions, error) {
+	transaction := &entities.Transactions{}
+	if err := r.db.GetDB().Preload("Items").Where("checkout_attempt_id = ?", attemptID).First(transaction).Error; err != nil {
+		return nil, err
+	}
+	return transaction, nil
+}
+
 func (r *pgTransactionsRepository) UpdateTransaction(transaction *entities.Transactions) error {
+	if transaction.Type == "barber_appointment" {
+		return r.db.GetDB().Model(&entities.Transactions{}).Where("id = ?", transaction.ID).Select(
+			"UserExternalID", "AmountPayed", "AmountTotal", "AmountRefunded", "StripeFee", "NetAmount", "StripeFeeKnown",
+			"Status", "PaymentStatus", "AppointmentID", "StripeSessionID", "StripePaymentIntentID", "CheckoutAttemptID", "CheckoutURL",
+			"PaymentMethod", "PaymentDetails", "ReceiptURL", "ExternalID", "Currency", "Meta",
+		).Updates(transaction).Error
+	}
 	if err := r.db.GetDB().Model(&entities.Transactions{}).Where("id = ?", transaction.ID).Updates(transaction).Error; err != nil {
 		return err
 	}

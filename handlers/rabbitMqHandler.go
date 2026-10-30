@@ -4,6 +4,8 @@ import (
 	"errors"
 	"finances-api/entities"
 	usecases "finances-api/usecases"
+	"finances-api/utils/meta"
+	"fmt"
 	"log"
 	"log/slog"
 	"math"
@@ -13,6 +15,7 @@ import (
 
 	messageWorker "github.com/moronimotta/message-worker-module"
 	"github.com/redis/go-redis/v9"
+	"gorm.io/gorm"
 )
 
 type RabbitMqHandler struct {
@@ -149,32 +152,71 @@ func (h *RabbitMqHandler) createServicePaymentProduct(data map[string]interface{
 		return err
 	}
 
-	localProduct := entities.Products{
-		ID:          serviceID,
-		Name:        name,
-		Description: description,
-		Price:       amount,
-		Currency:    currency,
+	localProduct, lookupErr := h.usecases.Db.GetProductByBarberServiceID(serviceID)
+	if lookupErr != nil && !errors.Is(lookupErr, gorm.ErrRecordNotFound) {
+		return lookupErr
 	}
-	productID, err := h.usecases.Gateway.CreateProduct(name, description, localProduct)
-	if err != nil {
-		return err
+	if localProduct == nil {
+		localProduct = &entities.Products{
+			BarberServiceID: serviceID,
+			Name:            name,
+			Description:     description,
+			Price:           amount,
+			Currency:        currency,
+			GatewayName:     "stripe",
+		}
+		productID, err := h.usecases.Gateway.CreateProduct(name, description, *localProduct)
+		if err != nil {
+			return err
+		}
+		if strings.TrimSpace(productID) == "" {
+			return errors.New("Stripe did not return a product ID for service")
+		}
+		priceID, err := h.usecases.Gateway.CreatePrice(productID, amount, currency)
+		if err != nil {
+			return err
+		}
+		if strings.TrimSpace(priceID) == "" {
+			return errors.New("Stripe did not return a price ID for service")
+		}
+		localProduct.GatewayProductExternalID = productID
+		localProduct.GatewayPriceExternalID = priceID
+		if err := h.usecases.Db.CreateProduct(localProduct); err != nil {
+			return fmt.Errorf("persist synchronized service %s: %w", serviceID, err)
+		}
+	} else if localProduct.Price != amount || !strings.EqualFold(localProduct.Currency, currency) || localProduct.GatewayPriceExternalID == "" {
+		priceID := localProduct.GatewayPriceExternalID
+		if priceID == "" {
+			priceID, err = h.usecases.Gateway.CreatePrice(localProduct.GatewayProductExternalID, amount, currency)
+		} else {
+			priceID, err = h.usecases.Gateway.ChangePrice(priceID, localProduct.GatewayProductExternalID, amount, currency)
+		}
+		if err != nil {
+			return err
+		}
+		localProduct.Name = name
+		localProduct.Description = description
+		localProduct.Price = amount
+		localProduct.Currency = currency
+		localProduct.GatewayPriceExternalID = priceID
+		localProduct.GatewayName = "stripe"
+		if err := h.usecases.Db.UpdateProduct(localProduct); err != nil {
+			return fmt.Errorf("update synchronized service %s: %w", serviceID, err)
+		}
 	}
-	if strings.TrimSpace(productID) == "" {
-		return errors.New("Stripe did not return a product ID for service")
+
+	metadata := meta.Meta{
+		"barber_service_id":        serviceID,
+		"gateway_current_price_id": localProduct.GatewayPriceExternalID,
 	}
-	priceID, err := h.usecases.Gateway.CreatePrice(productID, amount, currency)
-	if err != nil {
-		return err
-	}
-	if strings.TrimSpace(priceID) == "" {
-		return errors.New("Stripe did not return a price ID for service")
+	if err := h.usecases.Gateway.UpdateProduct(localProduct.GatewayProductExternalID, name, description, metadata); err != nil {
+		return fmt.Errorf("update Stripe metadata for service %s: %w", serviceID, err)
 	}
 
 	return h.PublishMessage("barber-app", "service.payment_details_created", map[string]string{
 		"service_id":        serviceID,
-		"external_id":       productID,
-		"external_price_id": priceID,
+		"external_id":       localProduct.GatewayProductExternalID,
+		"external_price_id": localProduct.GatewayPriceExternalID,
 	})
 }
 

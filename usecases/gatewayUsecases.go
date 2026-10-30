@@ -74,6 +74,10 @@ func (f *GatewayUsecase) CreateCheckoutSession(priceID []string, customerID stri
 	return sessionID, nil
 }
 
+func (f *GatewayUsecase) CreateAppointmentCheckoutSession(priceIDs []string, appointmentID string, metadata meta.Meta) (entities.CheckoutSession, error) {
+	return f.Repository.CreateAppointmentCheckoutSession(priceIDs, appointmentID, metadata)
+}
+
 func (f *GatewayUsecase) CreateCustomer(name, email, localUserID string) (string, error) {
 	customerID, err := f.Repository.CreateCustomer(name, email, localUserID)
 	if err != nil {
